@@ -1,0 +1,58 @@
+﻿AppType=JavaFX
+Build1=Default,b4j.example
+Group=Default Group
+Library1=jcore
+Library2=jfx
+Library3=banano
+Module1=JSArray
+Module10=JSTable
+Module11=JSTags
+Module12=JSWindow
+Module2=JSClassList
+Module3=JSDocument
+Module4=JSElement
+Module5=JSLocalStorage
+Module6=JSMath
+Module7=JSNavigator
+Module8=JSSessionStorage
+Module9=JSStyle
+NumberOfFiles=0
+NumberOfLibraries=3
+NumberOfModules=12
+Version=8.5
+@EndOfDesignText@
+
+#IgnoreWarnings: 16, 10, 14, 15	
+#Region Project Attributes 
+	#MergeLibraries: True
+	#LibraryAuthor: Anele Mashy Mbanga
+	#LibraryName: BANanoAPI
+#End Region
+
+Sub Process_Globals
+	Public BANano As BANano 'ignore
+	Public AppName As String = "BANanoAPI"
+	Public Version As String = "1.02"
+End Sub
+
+Sub AppStart (Form1 As Form, Args() As String)
+	'initialize banano for first use
+	BANano.Initialize("BANano", AppName, Version)
+	BANano.Header.Title = AppName
+	' start the build
+	#if release
+	BANano.BuildAsB4Xlib(Version)
+	#else
+		BANano.Build(File.DirApp)
+	#end if
+	ExitApplication
+End Sub
+
+'Return true to allow the default exceptions handler to handle the uncaught exception.
+Sub Application_Error (Error As Exception, StackTrace As String) As Boolean
+	Return True
+End Sub
+
+Sub BANano_Ready
+	
+End Sub
