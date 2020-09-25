@@ -1,24 +1,32 @@
 ﻿AppType=JavaFX
 Build1=Default,b4j.example
+File1=appml.js
+File2=appml_sql.js
+FileGroup1=Default Group
+FileGroup2=Default Group
 Group=Default Group
 Library1=jcore
 Library2=jfx
 Library3=banano
-Module1=JSArray
-Module10=JSTable
-Module11=JSTags
-Module12=JSWindow
-Module2=JSClassList
-Module3=JSDocument
-Module4=JSElement
-Module5=JSLocalStorage
-Module6=JSMath
-Module7=JSNavigator
-Module8=JSSessionStorage
-Module9=JSStyle
-NumberOfFiles=0
+Module1=|relative|..\..\..\shared\BANanoShared
+Module10=JSNavigator
+Module11=JSSessionStorage
+Module12=JSStyle
+Module13=JSStyleSheet
+Module14=JSTable
+Module15=JSTags
+Module16=JSWindow
+Module2=HTMLElement
+Module3=JSAML
+Module4=JSArray
+Module5=JSClassList
+Module6=JSDocument
+Module7=JSElement
+Module8=JSLocalStorage
+Module9=JSMath
+NumberOfFiles=2
 NumberOfLibraries=3
-NumberOfModules=12
+NumberOfModules=16
 Version=8.5
 @EndOfDesignText@
 
@@ -32,13 +40,16 @@ Version=8.5
 Sub Process_Globals
 	Public BANano As BANano 'ignore
 	Public AppName As String = "BANanoAPI"
-	Public Version As String = "1.02"
+	Public Version As String = "1.03"
 End Sub
 
 Sub AppStart (Form1 As Form, Args() As String)
 	'initialize banano for first use
 	BANano.Initialize("BANano", AppName, Version)
 	BANano.Header.Title = AppName
+	BANano.Header.AddJavascriptFile("appml.js")
+	BANano.Header.AddJavascriptFile("appml_sql.js")
+	
 	' start the build
 	#if release
 	BANano.BuildAsB4Xlib(Version)

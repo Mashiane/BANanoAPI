@@ -44,6 +44,6 @@ Sub clear As JSSessionStorage
 End Sub
 
 'length
-Sub size As Int
+Sub length1 As Int
 	Return bo.GetField("length").result
 End Sub

@@ -1,44 +1,115 @@
 ﻿AppType=JavaFX
 Build1=Default,b4j.example
-File1=pic_bulboff.gif
-File2=pic_bulbon.gif
-File3=styles.txt
+File1=appml.php
+File10=fa-brands-400.svg
+File11=fa-brands-400.ttf
+File12=fa-brands-400.woff
+File13=fa-brands-400.woff2
+File14=fa-regular-400.eot
+File15=fa-regular-400.svg
+File16=fa-regular-400.ttf
+File17=fa-regular-400.woff
+File18=fa-regular-400.woff2
+File19=fa-solid-900.eot
+File2=appml_config.php
+File20=fa-solid-900.svg
+File21=fa-solid-900.ttf
+File22=fa-solid-900.woff
+File23=fa-solid-900.woff2
+File24=fontawesome.min.css
+File25=jquery-3.5.1.slim.min.js
+File26=model_customerform.json
+File27=model_customerslist.json
+File28=ordering.bjl
+File29=pic_bulboff.gif
+File3=bootstrap.min.css
+File30=pic_bulbon.gif
+File31=popper.min.js
+File32=proto_customer.js
+File33=proto_customers_all.json
+File34=proto_customers_single.json
+File35=styles.txt
+File4=bootstrap.min.js
+File5=cd_catalog.json
+File6=cd_catalog.txt
+File7=customers.json
+File8=customers.php
+File9=fa-brands-400.eot
 FileGroup1=Default Group
+FileGroup10=Default Group
+FileGroup11=Default Group
+FileGroup12=Default Group
+FileGroup13=Default Group
+FileGroup14=Default Group
+FileGroup15=Default Group
+FileGroup16=Default Group
+FileGroup17=Default Group
+FileGroup18=Default Group
+FileGroup19=Default Group
 FileGroup2=Default Group
+FileGroup20=Default Group
+FileGroup21=Default Group
+FileGroup22=Default Group
+FileGroup23=Default Group
+FileGroup24=Default Group
+FileGroup25=Default Group
+FileGroup26=Default Group
+FileGroup27=Default Group
+FileGroup28=Default Group
+FileGroup29=Default Group
 FileGroup3=Default Group
+FileGroup30=Default Group
+FileGroup31=Default Group
+FileGroup32=Default Group
+FileGroup33=Default Group
+FileGroup34=Default Group
+FileGroup35=Default Group
+FileGroup4=Default Group
+FileGroup5=Default Group
+FileGroup6=Default Group
+FileGroup7=Default Group
+FileGroup8=Default Group
+FileGroup9=Default Group
 Group=Default Group
 Library1=jcore
 Library2=jfx
 Library3=banano
 Library4=bananoapi
-Module1=pgArrays
-Module10=pgHelloWorld
-Module11=pgIfStatement
-Module12=pgIIF
-Module13=pgIndex
-Module14=pgLocalStorage
-Module15=pgLogical
-Module16=pgLoopExiting
-Module17=pgMath
-Module18=pgOperators
-Module19=pgSessionStorage
-Module2=pgBulb
-Module20=pgStyle
-Module21=pgSwitch
-Module22=pgTable
-Module23=pgVariables
-Module24=pgVisibility
-Module25=pgWhileLoop
-Module3=pgClassList
-Module4=pgComparison
-Module5=pgDoLoop
-Module6=pgFireClick
-Module7=pgForLoop
-Module8=pgFunctions
-Module9=pgHelloFunction
-NumberOfFiles=3
+Module1=pgAMLBootstrap
+Module10=pgComparison
+Module11=pgDoLoop
+Module12=pgDynamicStyles
+Module13=pgFireClick
+Module14=pgForLoop
+Module15=pgFunctions
+Module16=pgHelloFunction
+Module17=pgHelloWorld
+Module18=pgIfStatement
+Module19=pgIIF
+Module2=pgAMLController
+Module20=pgIndex
+Module21=pgLocalStorage
+Module22=pgLogical
+Module23=pgLoopExiting
+Module24=pgMath
+Module25=pgOperators
+Module26=pgSessionStorage
+Module27=pgStyle
+Module28=pgSwitch
+Module29=pgTable
+Module3=pgAMLData
+Module30=pgVariables
+Module31=pgVisibility
+Module32=pgWhileLoop
+Module4=pgAMLPHP
+Module5=pgappml
+Module6=pgappmlobjects
+Module7=pgArrays
+Module8=pgBulb
+Module9=pgClassList
+NumberOfFiles=35
 NumberOfLibraries=4
-NumberOfModules=25
+NumberOfModules=32
 Version=8.5
 @EndOfDesignText@
 #IgnoreWarnings: 12, 15
@@ -49,8 +120,8 @@ Version=8.5
 
 Sub Process_Globals
 	Public BANano As BANano 'ignore
-	Public AppName As String = "BANanoJavaScriptDemo"
-	Public AppTitle As String = "BANanoJavaScriptDemo"
+	Public AppName As String = "BANanoAPIDemo"
+	Public AppTitle As String = "BANanoAPIDemo"
 	Private Publish As String = "C:/laragon/www"
 	Public ServerIP As String = "localhost"
 	Public Version As String = "1.00"
@@ -123,6 +194,12 @@ Sub AppStart (Form1 As Form, Args() As String)
 	BANano.TranspilerOptions.EnableLiveCodeSwapping = False
 	#end if
 	BANano.TranspilerOptions.RedirectOutput(File.DirApp, "log.txt")
+	'
+	BANano.Header.AddCSSFile("bootstrap.min.css")
+	BANano.Header.AddCSSFile("fontawesome.min.css")
+	BANano.Header.AddJavascriptFile("jquery-3.5.1.slim.min.js")
+	BANano.Header.AddJavascriptFile("popper.min.js")
+	BANano.Header.AddJavascriptFile("bootstrap.min.js")
 	
 	'set php settings
 	BANano.PHP_NAME = $"${AppName}.php"$
@@ -163,8 +240,16 @@ Sub BANano_Ready
 	'pgForLoop.Init
 	'pgLoopExiting.Init
 	'pgFunctions.Init
-	pgTable.Init
+	'pgTable.Init
+	'pgDynamicStyles.Init
 	
+	'**** Application Modelling Langunage (AML)
+	'pgappml.Init 
+	'pgappmlobjects.Init
+	'pgAMLPHP.Init
+	'pgAMLController.Init
+	'pgAMLData.init
+	pgAMLBootstrap.Init
 	
 	'pgIndex.Init
 	'pgClassList.Init

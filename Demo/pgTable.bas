@@ -13,17 +13,17 @@ Sub Process_Globals
 	Private body As JSElement
 End Sub
 
-#if css
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-#End If
+'#if css
+'td, th {
+'  border: 1px solid #dddddd;
+'  text-align: left;
+'  padding: 8px;
+'}
+'
+'tr:nth-child(even) {
+'  background-color: #dddddd;
+'}
+'#End If
 
 Sub Init
 	'initialize the window

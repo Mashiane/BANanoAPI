@@ -16,7 +16,7 @@ End Sub
 Sub Init
 	Dim a1 As JSArray
 	a1.Initialize(Array As String("Anele", "Mbanga", "(Mashy)"))
-	Log("a1 size: " & a1.size)
+	Log("a1 size: " & a1.length1)
 	text = "<ul>"
 	a1.foreach(Me, "buildlist")
 	text = text & "</ul>"

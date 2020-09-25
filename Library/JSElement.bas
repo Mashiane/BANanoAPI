@@ -5,6 +5,7 @@ Type=Class
 Version=8.5
 @EndOfDesignText@
 #IgnoreWarnings:12, 11
+
 Sub Class_Globals
 	Public Element As BANanoElement
 	Private banano As BANano
@@ -20,6 +21,17 @@ End Sub
 Sub fromBANanoElement(el As BANanoElement) As JSElement
 	Element = el
 	Return Me
+End Sub
+
+'set src
+Sub setsrc(value As String) As JSElement
+	Element.SetField("src", value)
+	Return Me
+End Sub
+
+'get src
+Sub getsrc() As String
+	Return Element.GetField("src").result
 End Sub
 
 'colSpan
@@ -105,18 +117,6 @@ Sub setclassName(value As String) As JSElement
 	Return Me
 End Sub
 
-'src 
-Sub setsrc(ssrc As String) As JSElement
-	Element.SetField("src", ssrc)
-	Return Me
-End Sub
-
-'get src 
-Sub getsrc() As String
-	Dim ssrc As String = Element.GetField("src").Result
-	Return ssrc
-End Sub
-
 'normalize
 Sub normalize As JSElement
 	Element.RunMethod("normalize", Null)
@@ -140,8 +140,6 @@ Sub nodeValue As String
 	Dim rslt As String = Element.GetField("nodeValue").Result
 	Return rslt
 End Sub
-
-
 
 'insertAdjacentElement
 Sub insertAdjacentElement(position As String, insertNode As JSElement) As JSElement
@@ -280,6 +278,30 @@ Sub onKeyDown(Module As Object, MethodName As String) As JSElement
 	Return Me
 End Sub
 
+'assign on keyup method
+'<code>
+'Sub doThis(e As BANanoEvent)
+'End Sub
+Sub onKeyUp(Module As Object, MethodName As String) As JSElement
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = banano.CallBack(Module, MethodName, Array(e))
+	Element.AddEventListener("keyup", cb, False)
+	Return Me
+End Sub
+
+
+'assign on keypress method
+'<code>
+'Sub doThis(e As BANanoEvent)
+'End Sub
+Sub onKeyPress(Module As Object, MethodName As String) As JSElement
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = banano.CallBack(Module, MethodName, Array(e))
+	Element.AddEventListener("keypress", cb, False)
+	Return Me
+End Sub
+
+
 'assign on load ethod
 '<code>
 'Sub doThis(e As BANanoEvent)
@@ -335,6 +357,117 @@ Sub onResize(Module As Object, MethodName As String)
 	Element.AddEventListener("resize", cb, False)
 End Sub
 
+'assign on dblclick method
+'<code>
+'Sub doThis(e As BANanoEvent)
+'End Sub
+Sub onDblClick(Module As Object, MethodName As String) As JSElement
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = banano.CallBack(Module, MethodName, Array(e))
+	Element.AddEventListener("dblclick", cb, False)
+	Return Me
+End Sub
+
+'assign on blur method
+'<code>
+'Sub doThis(e As BANanoEvent)
+'End Sub
+Sub onBeforeUnload(Module As Object, MethodName As String) As JSElement
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = banano.CallBack(Module, MethodName, Array(e))
+	Element.AddEventListener("beforeunload", cb, False)
+	Return Me
+End Sub
+
+
+'assign on drag method
+'<code>
+'Sub doThis(e As BANanoEvent)
+'End Sub
+Sub onDrag(Module As Object, MethodName As String) As JSElement
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = banano.CallBack(Module, MethodName, Array(e))
+	Element.AddEventListener("drag", cb, False)
+	Return Me
+End Sub
+
+'assign on drag end method
+'<code>
+'Sub doThis(e As BANanoEvent)
+'End Sub
+Sub onDragEnd(Module As Object, MethodName As String) As JSElement
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = banano.CallBack(Module, MethodName, Array(e))
+	Element.AddEventListener("dragend", cb, False)
+	Return Me
+End Sub
+
+'assign on drag enter method
+'<code>
+'Sub doThis(e As BANanoEvent)
+'End Sub
+Sub onDragEnter(Module As Object, MethodName As String) As JSElement
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = banano.CallBack(Module, MethodName, Array(e))
+	Element.AddEventListener("dragenter", cb, False)
+	Return Me
+End Sub
+
+'assign on drag leave method
+'<code>
+'Sub doThis(e As BANanoEvent)
+'End Sub
+Sub onDragLeave(Module As Object, MethodName As String) As JSElement
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = banano.CallBack(Module, MethodName, Array(e))
+	Element.AddEventListener("dragleave", cb, False)
+	Return Me
+End Sub
+
+'assign on drag over method
+'<code>
+'Sub doThis(e As BANanoEvent)
+'End Sub
+Sub onDragOver(Module As Object, MethodName As String) As JSElement
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = banano.CallBack(Module, MethodName, Array(e))
+	Element.AddEventListener("dragover", cb, False)
+	Return Me
+End Sub
+
+'assign on drag start method
+'<code>
+'Sub doThis(e As BANanoEvent)
+'End Sub
+Sub onDragStart(Module As Object, MethodName As String) As JSElement
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = banano.CallBack(Module, MethodName, Array(e))
+	Element.AddEventListener("dragstart", cb, False)
+	Return Me
+End Sub
+
+'assign on drop method
+'<code>
+'Sub doThis(e As BANanoEvent)
+'End Sub
+Sub onDrop(Module As Object, MethodName As String) As JSElement
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = banano.CallBack(Module, MethodName, Array(e))
+	Element.AddEventListener("drop", cb, False)
+	Return Me
+End Sub
+
+
+'assign on blur ethod
+'<code>
+'Sub doThis(e As BANanoEvent)
+'End Sub
+Sub onBlur(Module As Object, MethodName As String) As JSElement
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = banano.CallBack(Module, MethodName, Array(e))
+	Element.AddEventListener("blur", cb, False)
+	Return Me
+End Sub
 
 'assign on focus ethod
 '<code>
@@ -367,7 +500,6 @@ End Sub
 
 'set id
 Sub setid(sid As String) As JSElement
-	sid = sid.tolowercase
 	Element.SetField("id", sid)
 	Return Me
 End Sub
@@ -626,6 +758,12 @@ Sub blur() As JSElement
 	Element.RunMethod("blur", Null)
 	Return Me
 End Sub
+'
+'select i.e loose focus
+Sub select1() As JSElement
+	Element.RunMethod("select", Null)
+	Return Me
+End Sub
 
 'GetOuterHTML
 Sub getouterHTML() As String
@@ -798,6 +936,28 @@ Sub lastChild() As JSElement
 	Return ToJSElement(bo)
 End Sub
 
+'shortcut - addClass
+Sub addClass(className As String) As JSElement
+	classList.add(className)
+	Return Me 
+End Sub
+
+'shortcut - hasClass
+Sub hasClass(className As String) As Boolean
+	Return classList.containsClass(className)
+End Sub
+
+'shortcut - toggleClass
+Sub toggleClass(className As String) As JSElement
+	classList.toggle(className)
+	Return Me 
+End Sub
+
+'shortcut - removeClass
+Sub removeClass(className As String) As JSElement
+	classList.remove(className)
+	Return Me
+End Sub
 
 'lastElementChild
 Sub lastElementChild() As JSElement

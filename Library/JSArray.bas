@@ -116,7 +116,7 @@ Sub unshift(Item As Object) As Int
 End Sub
 
 'get Length of an arry to a variable
-Sub size() As Int
+Sub length1() As Int
 	Dim rslt As Int = obj.getfield("length").Result
 	Return rslt
 End Sub

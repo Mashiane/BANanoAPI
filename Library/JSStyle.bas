@@ -14,9 +14,44 @@ Public Sub Initialize(bo As BANanoObject) As JSStyle
 	Return Me
 End Sub
 
+'parentRule
+Sub parentRule As JSStyle
+	Dim bo As BANanoObject = Style.GetField("parentRule")
+	Dim el As JSStyle
+	el.Initialize(bo)
+	Return el
+End Sub
+
 'set display
 Sub setdisplay(value As String) As JSStyle
 	Style.SetField("display", value)
+	Return Me
+End Sub
+
+'item
+Sub item(pos As Int) As String
+	Return Style.RunMethod("item", Array(pos)).result
+End Sub
+
+'setProperty
+Sub setProperty(key As String, value As String) As JSStyle
+	Style.RunMethod("setProperty", Array(key, value))
+	Return Me
+End Sub
+
+'getPropertyValue
+Sub getPropertyValue(value As String) As String
+	Return Style.RunMethod("getPropertyValue", Array(value)).result
+End Sub
+
+'getPropertyPriority
+Sub getPropertyPriority(value As String) As String
+	Return Style.RunMethod("getPropertyPriority", Array(value)).result
+End Sub
+
+'removeProperty
+Sub removeProperty(value As String) As JSStyle
+	Style.RunMethod("removeProperty", Array(value))
 	Return Me
 End Sub
 
@@ -25,6 +60,21 @@ Sub getdisplay() As String
 	Return Style.GetField("display").result
 End Sub
 
+'get length
+Sub length1 As Int
+	Return Style.GetField("length").result
+End Sub
+
+'get cssText
+Sub getcssText() As String
+	Return Style.GetField("cssText").result
+End Sub
+
+'set cssText
+Sub setcssText(txt As String) As JSStyle
+	Style.setfield("cssText", txt)
+	Return Me
+End Sub
 
 'set right
 Sub setright(value As String) As JSStyle

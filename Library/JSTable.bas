@@ -21,7 +21,7 @@ End Sub
 
 'initialize the table
 Public Sub Initialize(doc As JSDocument, tableID As String) As JSTable
-	ID = tableID.tolowercase
+	ID = tableID
 	Table = doc.createElement("TABLE")
 	Table.id = ID
 	document = doc
@@ -31,6 +31,27 @@ Public Sub Initialize(doc As JSDocument, tableID As String) As JSTable
 	colSortables.Initialize
 	colDataFields.Initialize 
 	Return Me 
+End Sub
+
+'addClass
+Sub addClass(value As String) As JSTable
+	Table.addClass(value)
+	Return Me
+End Sub
+
+'set attribute
+Sub setAttribute(k As String, v As String) As JSTable
+	Table.setAttribute(k, v)
+	Return Me
+End Sub
+
+'clear
+Sub Clear
+	Dim trows As Int = rows.Size - 1
+	Dim crow As Int
+	For crow = trows To 1 Step -1
+		deleteRow(crow)
+	Next
 End Sub
 
 'set column widths
@@ -116,7 +137,7 @@ Sub getborder() As String
 End Sub
 
 'set headers
-Sub SetHeaders(hdrs As List) As JSTable
+Sub SetHeaders(hdrs As List) As JSElement
 	'create the header
 	header = createTHead
 	'create a header row
@@ -126,18 +147,18 @@ Sub SetHeaders(hdrs As List) As JSTable
 		Dim hcell As JSElement = hrow.insertCell(-1)
 		hcell.innerHTML = fld
 	Next
-	Return Me
+	Return hrow
 End Sub
 
 'add new row
-Sub AddRow(hdrs As List) As JSTable
+Sub AddRow(hdrs As List) As JSElement
 	'create the row
 	Dim trow As JSElement = insertRow(-1)
 	For Each fld As String In hdrs
 		Dim hcell As JSElement = trow.insertCell(-1)
 		hcell.textContent = fld
 	Next
-	Return Me
+	Return trow
 End Sub
 
 'set align
@@ -163,7 +184,7 @@ Sub getbackgroundColor() As String
 End Sub
 
 'set footers
-Sub SetFooters(hdrs As List) As JSTable
+Sub SetFooters(hdrs As List) As JSElement
 	'create the footer
 	footer = createTFoot
 	'create a footer row
@@ -173,11 +194,11 @@ Sub SetFooters(hdrs As List) As JSTable
 		Dim hcell As JSElement = frow.insertCell(-1)
 		hcell.textContent = fld
 	Next
-	Return Me
+	Return frow
 End Sub
 
 'set footer
-Public Sub SetFooter(footerText As String, colspan As Int) As JSTable
+Public Sub SetFooter(footerText As String, colspan As Int) As JSElement
 	'create the footer
 	footer = createTFoot
 	'create a footer row
@@ -185,7 +206,7 @@ Public Sub SetFooter(footerText As String, colspan As Int) As JSTable
 	Dim hcell As JSElement = frow.insertCell(-1)
 	hcell.textContent = footerText
 	hcell.colSpan = colspan
-	Return Me
+	Return frow
 End Sub
 
 'set column data fields

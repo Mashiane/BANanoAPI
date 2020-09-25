@@ -56,6 +56,29 @@ Public Sub Initialize(doc As BANanoObject) As JSDocument
 	Return Me
 End Sub
 
+'addBR
+Sub addBR(jse As JSElement) As JSDocument
+	Dim child As JSElement = createElement("BR")
+	jse.appendChild(child)
+	Return Me
+End Sub
+
+'addHR
+Sub addHR(jse As JSElement) As JSDocument
+	Dim child As JSElement = createElement("HR")
+	jse.appendChild(child)
+	Return Me
+End Sub
+
+'addScript
+Sub addScript(sURL As String) As JSDocument
+	Dim hm As JSElement = createElement("script")
+	hm.src = sURL
+	Dim s As JSElement = getElementsByTagName("script").Get(0)
+	s.parentNode.insertBefore(hm, s)
+	Return Me
+End Sub
+
 'activeElement
 Sub activeElement As JSElement
 	Dim b As BANanoObject = d.GetField("activeElement")
@@ -231,7 +254,27 @@ Sub removeEventListener(Module As Object, eventName As String, MethodName As Str
 	d.removeEventListener(eventName, cb)
 End Sub
 
-
+'get styleSheets
+Sub styleSheets() As List
+	'get the stylesheets
+	Dim bo As BANanoObject = d.GetField("styleSheets")
+	'get the number of items
+	Dim tSyles As Int = bo.GetField("length").result
+	tSyles = tSyles - 1
+	'
+	Dim nl As List
+	nl.Initialize
+	
+	If tSyles >= 0 Then
+		Dim cstyle As Int
+		For cstyle = 0 To tSyles
+			Dim boStyle As BANanoObject = bo.RunMethod("item", Array(cstyle))
+			Log(boStyle)
+		Next
+	Else
+		Return nl
+	End If
+End Sub
 
 'get the documentURI
 Sub getdocumentURI() As String
@@ -335,7 +378,6 @@ End Sub
 
 'getElementById
 Sub getElementById(arguements As String) As JSElement
-	arguements = arguements.tolowercase
 	Dim bo As BANanoObject = d.RunMethod("getElementById", Array(arguements))
 	Dim jse As JSElement = ToJSElement(bo)
 	Return jse
@@ -418,4 +460,26 @@ End Sub
 'referrer
 Sub referrer As String
 	Return d.GetField("referrer").result
+End Sub
+
+'helper - getstyleSheetByTitle
+Sub getStyleSheetByTitle(unique_title As String) As JSStyleSheet
+	Dim tSyles As Int = d.GetField("styleSheets").GetField("length").result
+	Log(tSyles)
+'	Dim cStyles As Int
+'	For cStyles = 0 To tSyles
+'		Dim sheetBO As BANanoObject = styleSheets.get(cStyles)
+'		Dim sheet As JSStyleSheet = ToJSStyleSheet(sheetBO)
+'		If sheet.title.EqualsIgnoreCase(unique_title) Then
+'			Return sheet
+'		End If
+'	Next
+	Return Null
+End Sub
+
+'to jsStyleSheet
+Sub ToJSStyleSheet(bo As BANanoObject) As JSStyleSheet
+	Dim el As JSStyleSheet
+	el.Sheet = ToJSElement(bo)
+	Return el
 End Sub

@@ -115,7 +115,7 @@ Sub getKey(e As BANanoEvent)
 End Sub
 
 Sub getLength(e As BANanoEvent)
-	document.getElementById("demo").innerHTML = sessionStorage.size
+	document.getElementById("demo").innerHTML = sessionStorage.length1
 End Sub
 
 Sub clearLS(e As BANanoEvent)  'ignore

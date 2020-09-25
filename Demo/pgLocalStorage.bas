@@ -115,7 +115,7 @@ Sub getKey(e As BANanoEvent)
 End Sub
 
 Sub getLength(e As BANanoEvent)
-	document.getElementById("demo").innerHTML = localStorage.size
+	document.getElementById("demo").innerHTML = localStorage.length1
 End Sub
 
 Sub clearLS(e As BANanoEvent)  'ignore

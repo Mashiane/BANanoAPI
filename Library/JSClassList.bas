@@ -34,7 +34,7 @@ Sub names As String
 End Sub
 
 'get the length
-Sub size As Int
+Sub length1 As Int
 	Return items.size
 End Sub
 
