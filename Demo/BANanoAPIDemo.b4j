@@ -17,18 +17,20 @@ File21=fa-solid-900.ttf
 File22=fa-solid-900.woff
 File23=fa-solid-900.woff2
 File24=fontawesome.min.css
-File25=jquery-3.5.1.slim.min.js
-File26=model_customerform.json
-File27=model_customerslist.json
-File28=ordering.bjl
-File29=pic_bulboff.gif
+File25=img_lamp.jpg
+File26=img_the_scream.jpg
+File27=jquery-3.5.1.slim.min.js
+File28=model_customerform.json
+File29=model_customerslist.json
 File3=bootstrap.min.css
-File30=pic_bulbon.gif
-File31=popper.min.js
-File32=proto_customer.js
-File33=proto_customers_all.json
-File34=proto_customers_single.json
-File35=styles.txt
+File30=ordering.bjl
+File31=pic_bulboff.gif
+File32=pic_bulbon.gif
+File33=popper.min.js
+File34=proto_customer.js
+File35=proto_customers_all.json
+File36=proto_customers_single.json
+File37=styles.txt
 File4=bootstrap.min.js
 File5=cd_catalog.json
 File6=cd_catalog.txt
@@ -64,6 +66,8 @@ FileGroup32=Default Group
 FileGroup33=Default Group
 FileGroup34=Default Group
 FileGroup35=Default Group
+FileGroup36=Default Group
+FileGroup37=Default Group
 FileGroup4=Default Group
 FileGroup5=Default Group
 FileGroup6=Default Group
@@ -75,41 +79,63 @@ Library1=jcore
 Library2=jfx
 Library3=banano
 Library4=bananoapi
-Module1=pgAMLBootstrap
-Module10=pgComparison
-Module11=pgDoLoop
-Module12=pgDynamicStyles
-Module13=pgFireClick
-Module14=pgForLoop
-Module15=pgFunctions
-Module16=pgHelloFunction
-Module17=pgHelloWorld
-Module18=pgIfStatement
-Module19=pgIIF
-Module2=pgAMLController
-Module20=pgIndex
-Module21=pgLocalStorage
-Module22=pgLogical
-Module23=pgLoopExiting
-Module24=pgMath
-Module25=pgOperators
-Module26=pgSessionStorage
-Module27=pgStyle
-Module28=pgSwitch
-Module29=pgTable
-Module3=pgAMLData
-Module30=pgVariables
-Module31=pgVisibility
-Module32=pgWhileLoop
-Module4=pgAMLPHP
-Module5=pgappml
-Module6=pgappmlobjects
-Module7=pgArrays
-Module8=pgBulb
-Module9=pgClassList
-NumberOfFiles=35
-NumberOfLibraries=4
-NumberOfModules=32
+Library5=bananoaml
+Module1=canvdays
+Module10=pgCanvasDay01
+Module11=pgCanvasDay02
+Module12=pgCanvasDay03
+Module13=pgCanvasDay04
+Module14=pgCanvasDay05
+Module15=pgCanvasDay06
+Module16=pgCanvasDay07
+Module17=pgCanvasDay08
+Module18=pgCanvasDay09
+Module19=pgCanvasDay10
+Module2=pgAMLBootstrap
+Module20=pgCanvasDay11
+Module21=pgCanvasDay12
+Module22=pgCanvasDay13
+Module23=pgCanvasDay14
+Module24=pgCanvasDay15
+Module25=pgCanvasDay16
+Module26=pgCanvasDay17
+Module27=pgClassList
+Module28=pgComparison
+Module29=pgDates
+Module3=pgAMLController
+Module30=pgDoLoop
+Module31=pgDynamicStyles
+Module32=pgFireClick
+Module33=pgForLoop
+Module34=pgFunctions
+Module35=pgHelloFunction
+Module36=pgHelloWorld
+Module37=pgIfStatement
+Module38=pgIIF
+Module39=pgIndex
+Module4=pgAMLData
+Module40=pgLocalStorage
+Module41=pgLogical
+Module42=pgLoopExiting
+Module43=pgMapObject
+Module44=pgMath
+Module45=pgObjects
+Module46=pgOperators
+Module47=pgSessionStorage
+Module48=pgStyle
+Module49=pgSwitch
+Module5=pgAMLPHP
+Module50=pgTable
+Module51=pgVariables
+Module52=pgVisibility
+Module53=pgWhileLoop
+Module6=pgappml
+Module7=pgappmlobjects
+Module8=pgArrays
+Module9=pgBulb
+NumberOfFiles=37
+NumberOfLibraries=5
+NumberOfModules=53
 Version=8.5
 @EndOfDesignText@
 #IgnoreWarnings: 12, 15
@@ -131,9 +157,9 @@ End Sub
 Sub AppStart (Form1 As Form, Args() As String)
 '	Dim sbStyles As StringBuilder
 '	sbStyles.Initialize
-'	' 
+'	'
 '	Dim sb As StringBuilder
-'	sb.Initialize 
+'	sb.Initialize
 '	Dim contents As List = File.ReadList(File.DirAssets, "styles.txt")
 '	For Each strLine As String In contents
 '		strLine = strLine.Trim
@@ -143,7 +169,7 @@ Sub AppStart (Form1 As Form, Args() As String)
 '		'
 '		Dim eachLine As StringBuilder
 '		eachLine.Initialize
-'		'	
+'		'
 '		Dim tLen As Int = scode.Length - 1
 '		Dim tCnt As Int
 '		For tCnt = 0 To tLen
@@ -152,23 +178,32 @@ Sub AppStart (Form1 As Form, Args() As String)
 '			'get the asc
 '			Dim eachi As Int = Asc(eachw)
 '			If eachi >= 65 And eachi <= 126 Then
-'				eachLine.Append(eachw)	
+'				eachLine.Append(eachw)
 '			Else
 '				Exit
 '			End If
 '		Next
 '		Dim prop As String = eachLine.ToString
 '		prop = prop.trim
+'		prop = prop.Replace("(","")
+'		prop = prop.replace(")","")
+'		
+'		'run method
+'		'sbStyles.Append($"'${prop}"$).Append(CRLF)
+'		'sbStyles.Append($"Sub ${prop}(args As List) As JSCanvas"$).Append(CRLF)
+'		'sbStyles.Append($"obj.RunMethod("${prop}", args)"$).Append(CRLF)
+'		'sbStyles.Append("Return Me").Append(CRLF)
+'		'sbStyles.Append("End Sub").Append(CRLF).Append(CRLF)
 '		'
 '		'build the code
 '		sbStyles.Append($"'set ${prop}"$).Append(CRLF)
-'		sbStyles.Append($"Sub set${prop}(value As String) As JSStyle"$).Append(CRLF)
+'		sbStyles.Append($"Sub set${prop}(value As Object) As JSCanvas"$).Append(CRLF)
 '		sbStyles.Append($"Style.SetField("${prop}", value)"$).Append(CRLF)
 '		sbStyles.Append("Return Me").Append(CRLF)
 '		sbStyles.Append("End Sub").Append(CRLF).Append(CRLF)
 '		'
 '		sbStyles.Append($"'get ${prop}"$).Append(CRLF)
-'		sbStyles.Append($"Sub get${prop}() As String"$).Append(CRLF)
+'		sbStyles.Append($"Sub get${prop}() As Object"$).Append(CRLF)
 '		sbStyles.Append($"Return Style.GetField("${prop}").Result"$).Append(CRLF)
 '		sbStyles.Append("End Sub").Append(CRLF).Append(CRLF)
 '	Next
@@ -242,6 +277,29 @@ Sub BANano_Ready
 	'pgFunctions.Init
 	'pgTable.Init
 	'pgDynamicStyles.Init
+	'pgObjects.Init
+	'pgDates.Init
+	'pgMapObject.Init
+	
+	'**** CANVAS
+	'pgCanvasDay01.Init
+	'pgCanvasDay02.Init
+	'pgCanvasDay03.Init
+	'pgCanvasDay04.Init
+	'pgCanvasDay05.Init
+	'pgCanvasDay06.Init
+	'pgCanvasDay07.Init
+	'pgCanvasDay08.init
+	'pgCanvasDay09.init
+	'pgCanvasDay10.init
+	'pgCanvasDay11.Init
+	'pgCanvasDay12.Init
+	'pgCanvasDay13.init
+	'pgCanvasDay14.Init
+	'pgCanvasDay15.Init
+	'pgCanvasDay16.init
+	pgCanvasDay17.Init
+	
 	
 	'**** Application Modelling Langunage (AML)
 	'pgappml.Init 
@@ -249,7 +307,7 @@ Sub BANano_Ready
 	'pgAMLPHP.Init
 	'pgAMLController.Init
 	'pgAMLData.init
-	pgAMLBootstrap.Init
+	'pgAMLBootstrap.Init
 	
 	'pgIndex.Init
 	'pgClassList.Init

@@ -294,4 +294,14 @@ Sub sort() As JSArray
 	obj.RunMethod("sort", Null)
 	Return Me
 End Sub
-'
+
+'convert to json
+Sub ToJSON As String
+	Return BANano.ToJson(obj)
+End Sub
+
+'from json
+Sub FromJSON(sJSON As String) As JSArray
+	obj = BANano.FromJson(sJSON)
+	Return Me
+End Sub

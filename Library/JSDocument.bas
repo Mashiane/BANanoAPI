@@ -4,7 +4,7 @@ ModulesStructureVersion=1
 Type=Class
 Version=8.5
 @EndOfDesignText@
-#IgnoreWarnings:12, 11
+#IgnoreWarnings:12, 11, 9
 Sub Class_Globals
 	Private d As BANanoObject
 	Private banano As BANano
@@ -56,6 +56,17 @@ Public Sub Initialize(doc As BANanoObject) As JSDocument
 	Return Me
 End Sub
 
+'SetField
+Sub SetField(k As String, v As Object) As JSDocument
+	d.SetField(k, v)
+	Return Me
+End Sub
+
+'GetField
+Sub GetField(k As String) As BANanoObject
+	Return d.GetField(k)
+End Sub
+
 'addBR
 Sub addBR(jse As JSElement) As JSDocument
 	Dim child As JSElement = createElement("BR")
@@ -87,7 +98,7 @@ End Sub
 
 'adoptNode
 Sub adoptNode(node As JSElement) As JSElement
-	Dim b As BANanoObject = node.ToObject
+	Dim b As BANanoObject = node.Element
 	Dim nnode As BANanoObject = d.RunMethod("adoptNode", Array(b))
 	Return ToJSElement(nnode)
 End Sub
@@ -232,6 +243,18 @@ Sub embeds() As List
 	Return rslt
 End Sub
 
+'shortcut add event listener
+Sub on(eventName As String, module As Object, methodName As String) As JSDocument
+	addEventListener(module, eventName, methodName, False)
+	Return Me
+End Sub
+
+'shortcut - remove event listener
+Sub off(eventName As String, module As Object, methodName As String) As JSDocument
+	removeEventListener(module, eventName, methodName, False)
+	Return Me
+End Sub
+
 'add an event listener to the document
 '<code>
 'addEventListener("click", "doThis", True)
@@ -269,8 +292,9 @@ Sub styleSheets() As List
 		Dim cstyle As Int
 		For cstyle = 0 To tSyles
 			Dim boStyle As BANanoObject = bo.RunMethod("item", Array(cstyle))
-			Log(boStyle)
+			nl.Add(boStyle)
 		Next
+		Return nl
 	Else
 		Return nl
 	End If
@@ -383,6 +407,12 @@ Sub getElementById(arguements As String) As JSElement
 	Return jse
 End Sub
 
+''getElementById1
+'Sub getElementByIdBO(arguements As String) As BANanoObject
+'	Dim bo As BANanoObject = d.RunMethod("getElementById", Array(arguements))
+'	Return bo
+'End Sub
+
 'getElementsByTagName
 Sub getElementsByTagName(arguements As String) As List
 	Dim lst As List = d.RunMethod("getElementsByTagName", Array(arguements)).result
@@ -447,7 +477,7 @@ End Sub
 
 'importNode
 Sub importNode(node As JSElement, deep As Boolean) As JSElement
-	Dim bn As BANanoObject = node.ToObject
+	Dim bn As BANanoObject = node.Element
 	Dim nn As BANanoObject = d.RunMethod("importNode", Array(bn, deep))
 	Return ToJSElement(nn)
 End Sub
@@ -462,20 +492,20 @@ Sub referrer As String
 	Return d.GetField("referrer").result
 End Sub
 
-'helper - getstyleSheetByTitle
-Sub getStyleSheetByTitle(unique_title As String) As JSStyleSheet
-	Dim tSyles As Int = d.GetField("styleSheets").GetField("length").result
-	Log(tSyles)
-'	Dim cStyles As Int
-'	For cStyles = 0 To tSyles
-'		Dim sheetBO As BANanoObject = styleSheets.get(cStyles)
-'		Dim sheet As JSStyleSheet = ToJSStyleSheet(sheetBO)
-'		If sheet.title.EqualsIgnoreCase(unique_title) Then
-'			Return sheet
-'		End If
-'	Next
-	Return Null
-End Sub
+''helper - getstyleSheetByTitle
+'Sub getStyleSheetByTitle(unique_title As String) As JSStyleSheet
+'	Dim tSyles As Int = d.GetField("styleSheets").GetField("length").result
+'	Log(tSyles)
+''	Dim cStyles As Int
+''	For cStyles = 0 To tSyles
+''		Dim sheetBO As BANanoObject = styleSheets.get(cStyles)
+''		Dim sheet As JSStyleSheet = ToJSStyleSheet(sheetBO)
+''		If sheet.title.EqualsIgnoreCase(unique_title) Then
+''			Return sheet
+''		End If
+''	Next
+'	Return Null
+'End Sub
 
 'to jsStyleSheet
 Sub ToJSStyleSheet(bo As BANanoObject) As JSStyleSheet

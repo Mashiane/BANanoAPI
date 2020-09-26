@@ -125,19 +125,85 @@ End Sub
 'return the generated html
 Sub ToString As String
 	If bLoremIpsum Then
-		minnerHTML = BANanoShared.LoremIpsum(1)
+		minnerHTML = LoremIpsum(1)
 	End If
 	'build the 'class' attribute
-	Dim className As String = BANanoShared.JoinMapKeys(classList, " ")
+	Dim className As String = JoinMapKeys(classList, " ")
 	AddAttr("class", className)
 	'build the 'style' attribute
-	Dim styleName As String = BANanoShared.BuildStyle(styleList)
+	Dim styleName As String = BuildStyle(styleList)
 	AddAttr("style", styleName)
 	'build element internal structure
-	Dim iStructure As String = BANanoShared.BuildAttributes(attributeList)
+	Dim iStructure As String = BuildAttributes(attributeList)
 	iStructure = iStructure.trim
 	Dim rslt As String = $"<${mTagName} id="${mID}" ${iStructure}>${minnerHTML}${sbText.ToString}</${mTagName}>"$
 	Return rslt
+End Sub
+
+Sub BuildAttributes(properties As Map) As String
+	If properties.ContainsKey("tagname") Then
+		properties.remove("tagname")
+	End If
+	Dim sbx As StringBuilder
+	sbx.Initialize
+	For Each k As String In properties.keys
+		Dim v As String = properties.get(k)
+		If BANano.IsUndefined(v) Then v = ""
+		If BANano.IsNull(v) Then v = ""
+		If BANano.IsBoolean(v) Then
+			sbx.Append($"${k}="${v}" "$)
+		Else
+			k = k.trim
+			v = v.trim
+			If k = "" Then Continue
+			If v = "" Then Continue
+			sbx.Append($"${k}="${v}" "$)
+		End If
+	Next
+	Return sbx.tostring
+End Sub
+
+'build the styles
+Sub BuildStyle(styles As Map) As String
+	Dim sbx As StringBuilder
+	sbx.Initialize
+	For Each k As String In styles.keys
+		Dim v As String = styles.get(k)
+		If BANano.IsUndefined(v) Then v = ""
+		If BANano.IsNull(v) Then v = ""
+		k = k.trim
+		v = v.trim
+		If k = "" Then Continue
+		If v = "" Then Continue
+		sbx.Append($"${k}:${v};"$)
+	Next
+	Return sbx.tostring
+End Sub
+
+Sub JoinMapKeys(m As Map, delim As String) As String
+	Dim sb As StringBuilder
+	sb.Initialize
+	Dim kTot As Int = m.Size - 1
+	Dim kCnt As Int
+	Dim strKey As String = m.getkeyat(0)
+	sb.Append(strKey)
+	For kCnt = 1 To kTot
+		Dim strKey As String = m.getkeyat(kCnt)
+		sb.Append(delim).append(strKey)
+	Next
+	Return sb.ToString
+End Sub
+
+
+'return sentences of lorem ipsum
+Sub LoremIpsum(count As Int) As String
+	Dim str As String = $"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."$
+	Dim sb As StringBuilder
+	sb.Initialize
+	For i = 1 To count
+		sb.Append(str).Append(CRLF)
+	Next
+	Return sb.tostring
 End Sub
 
 'add a break
@@ -210,21 +276,36 @@ public Sub Trigger(event As String, params() As String)
 	End If
 End Sub
 
+'join list to mv string
+Sub Join(delimiter As String, lst As List) As String
+	Dim i As Int
+	Dim sbx As StringBuilder
+	Dim fld As String
+	sbx.Initialize
+	fld = lst.Get(0)
+	sbx.Append(fld)
+	For i = 1 To lst.size - 1
+		Dim fld As String = lst.Get(i)
+		sbx.Append(delimiter).Append(fld)
+	Next
+	Return sbx.ToString
+End Sub
+
 'add a class
 public Sub addClass(varClass As String)
 	If BANano.IsUndefined(varClass) Or BANano.IsNull(varClass) Then Return
-	If BANano.IsNumber(varClass) Then varClass = BANanoShared.CStr(varClass)
+	If BANano.IsNumber(varClass) Then varClass = CStr(varClass)
 	varClass = varClass.trim
 	If varClass = "" Then Return
 	If mElement <> Null Then mElement.AddClass(varClass)
-	Dim mxItems As List = BANanoShared.StrParse(" ", varClass)
+	Dim mxItems As List = StrParse(" ", varClass)
 	For Each mt As String In mxItems
 		classList.put(mt, mt)
 	Next
 End Sub
 
 Sub addClasses(listOfClasses As List)
-	Dim strClass As String = BANanoShared.Join(" ", listOfClasses)
+	Dim strClass As String = Join(" ", listOfClasses)
 	addClass(strClass)
 End Sub
 
@@ -233,11 +314,11 @@ public Sub addClassOnCondition(varClass As String, varCondition As Boolean, varS
 	If BANano.IsUndefined(varCondition) Or BANano.IsNull(varCondition) Then Return
 	If varShouldBe <> varCondition Then Return
 	If BANano.IsUndefined(varClass) Or BANano.IsNull(varClass) Then Return
-	If BANano.IsNumber(varClass) Then varClass = BANanoShared.CStr(varClass)
+	If BANano.IsNumber(varClass) Then varClass = CStr(varClass)
 	varClass = varClass.trim
 	If varClass = "" Then Return
 	If mElement <> Null Then mElement.AddClass(varClass)
-	Dim mxItems As List = BANanoShared.StrParse(" ", varClass)
+	Dim mxItems As List = StrParse(" ", varClass)
 	For Each mt As String In mxItems
 		classList.put(mt, mt)
 	Next
@@ -246,7 +327,7 @@ End Sub
 'add a style
 public Sub addStyle(varProp As String, varStyle As String)
 	If BANano.IsUndefined(varStyle) Or BANano.IsNull(varStyle) Then Return
-	If BANano.IsNumber(varStyle) Then varStyle = BANanoShared.CStr(varStyle)
+	If BANano.IsNumber(varStyle) Then varStyle = CStr(varStyle)
 	If mElement <> Null Then
 		Dim aStyle As Map = CreateMap()
 		aStyle.put(varProp, varStyle)
@@ -261,10 +342,18 @@ Sub SetText(varText As String)
 	addChild(varText)
 End Sub
 
+
+'convert object to string
+Sub CStr(o As Object) As String
+	If o = BANano.UNDEFINED Then o = ""
+	Return "" & o
+End Sub
+
+
 'add an attribute
 private Sub AddAttr(varProp As String, varValue As String) As HTMLElement
 	If BANano.IsUndefined(varValue) Or BANano.IsNull(varValue) Then Return Me
-	If BANano.IsNumber(varValue) Then varValue = BANanoShared.CStr(varValue)
+	If BANano.IsNumber(varValue) Then varValue = CStr(varValue)
 	attributeList.put(varProp, varValue)
 	If mElement <> Null Then mElement.SetAttr(varProp, varValue)
 	Return Me
@@ -310,10 +399,10 @@ End Sub
 'sets the attributes
 public Sub setAttributes(varAttributes As String)
 	If varAttributes.IndexOf(",") >= 0 Then varAttributes = varAttributes.Replace(",",";")
-	Dim mxItems As List = BANanoShared.StrParse(";", varAttributes)
+	Dim mxItems As List = StrParse(";", varAttributes)
 	For Each mt As String In mxItems
-		Dim k As String = BANanoShared.MvField(mt,1,"=")
-		Dim v As String = BANanoShared.MvField(mt,2,"=")
+		Dim k As String = MvField(mt,1,"=")
+		Dim v As String = MvField(mt,2,"=")
 		If mElement <> Null Then mElement.SetAttr(k, v)
 		attributeList.put(k, v)
 	Next
@@ -322,12 +411,59 @@ End Sub
 'sets the styles from the designer
 public Sub setStyles(varStyles As String)
 	If varStyles.IndexOf(";") >= 0 Then varStyles = varStyles.Replace(";",",")
-	Dim mxItems As List = BANanoShared.StrParse(",", varStyles)
+	Dim mxItems As List = StrParse(",", varStyles)
 	For Each mt As String In mxItems
-		Dim k As String = BANanoShared.MvField(mt,1,":")
-		Dim v As String = BANanoShared.MvField(mt,2,":")
+		Dim k As String = MvField(mt,1,":")
+		Dim v As String = MvField(mt,2,":")
 		addStyle(k, v)
 	Next
+End Sub
+
+'mvfield sub
+Sub MvField(sValue As String, iPosition As Int, Delimiter As String) As String
+	If sValue.Length = 0 Then Return ""
+	Dim xPos As Int = sValue.IndexOf(Delimiter)
+	If xPos = -1 Then Return sValue
+	Dim mValues As List = StrParse(Delimiter,sValue)
+	Dim tValues As Int
+	tValues = mValues.size -1
+	Select Case iPosition
+		Case -1
+			Return mValues.get(tValues)
+		Case -2
+			Return mValues.get(tValues - 1)
+		Case -3
+			Dim sb As StringBuilder
+			sb.Initialize
+			Dim startcnt As Int
+			sb.Append(mValues.Get(1))
+			For startcnt = 2 To tValues
+				sb.Append(Delimiter)
+				sb.Append(mValues.get(startcnt))
+			Next
+			Return sb.tostring
+		Case Else
+			iPosition = iPosition - 1
+			If iPosition <= -1 Then
+				Return mValues.get(tValues)
+			End If
+			If iPosition > tValues Then
+				Return ""
+			End If
+			Return mValues.get(iPosition)
+	End Select
+End Sub
+
+Sub StrParse(delim As String, inputString As String) As List
+	Dim nl As List
+	nl.Initialize
+	inputString = CStr(inputString)
+	If inputString = "null" Then inputString = ""
+	If inputString = "undefined" Then inputString = ""
+	If inputString = "" Then Return nl
+	Dim values() As String = BANano.Split(delim,inputString)
+	nl.AddAll(values)
+	Return nl
 End Sub
 
 'returns the attributes

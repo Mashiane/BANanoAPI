@@ -7,20 +7,102 @@ Version=8.5
 #IgnoreWarnings:12, 11
 
 Sub Class_Globals
-	Public Element As BANanoElement
+	Public Element As BANanoObject
 	Private banano As BANano
 End Sub
 
 'Initializes the object. You can add parameters to this method if needed.
 Public Sub Initialize(bo As BANanoObject) As JSElement
-	Element = banano.ToElement(bo)
+	Element = bo
 	Return Me
 End Sub
+
+'clear
+Sub empty As JSElement
+	setinnerHTML("")
+	Return Me
+End Sub
+
+'set autoplay
+Sub setautoplay(value As String) As JSElement
+	setAttribute("autoplay", value)
+	Return Me
+End Sub
+
+'set controls
+Sub setcontrols(value As String) As JSElement
+	setAttribute("controls", value)
+	Return Me
+End Sub
+
+'set loop
+Sub setloop(value As String) As JSElement
+	setAttribute("loop", value)
+	Return Me
+End Sub
+
+'set poster
+Sub setposter(value As String) As JSElement
+	setAttribute("poster", value)
+	Return Me
+End Sub
+
+'set preload
+Sub setpreload(value As String) As JSElement
+	setAttribute("preload", value)
+	Return Me
+End Sub
+
+'set muted
+Sub setmuted(value As String) As JSElement
+	setAttribute("muted", value)
+	Return Me
+End Sub
+
 
 'fromBANanoElement
 Sub fromBANanoElement(el As BANanoElement) As JSElement
 	Element = el
 	Return Me
+End Sub
+
+'getContext
+Sub getContext(context As String) As BANanoObject
+	Dim bo As BANanoObject = Element.RunMethod("getContext", Array(context))
+	Return bo
+End Sub
+
+'set alt
+Sub setalt(value As String) As JSElement
+	Element.SetField("alt", value)
+	Return Me
+End Sub
+
+'get alt
+Sub getalt() As String
+	Return Element.getField("alt").Result
+End Sub
+
+'set width
+Sub setwidth(value As Int) As JSElement
+	Element.SetField("width", value)
+	Return Me
+End Sub
+
+'set height
+Sub setheight(value As Int) As JSElement
+	Element.SetField("height", value)
+	Return Me
+End Sub
+
+'get width
+Sub getwidth As Int
+	Return Element.GetField("width").result
+End Sub
+
+'get height
+Sub getheight As Int
+	Return Element.GetField("height").result
 End Sub
 
 'set src
@@ -89,8 +171,8 @@ End Sub
 
 'insertBefore
 Sub insertBefore(newNode As JSElement, existingNode As JSElement) As JSElement
-	Dim bo1 As BANanoObject = newNode.ToObject
-	Dim bo2 As BANanoObject = existingNode.toobject
+	Dim bo1 As BANanoObject = newNode.Element
+	Dim bo2 As BANanoObject = existingNode.Element
 	Element.RunMethod("insertBefore", Array(bo1, bo2))
 	Return Me
 End Sub
@@ -143,7 +225,7 @@ End Sub
 
 'insertAdjacentElement
 Sub insertAdjacentElement(position As String, insertNode As JSElement) As JSElement
-	Dim bo As BANanoObject = insertNode.ToObject 
+	Dim bo As BANanoObject = insertNode.Element 
 	Element.RunMethod("insertAdjacentElement", Array(position, bo))
 	Return Me
 End Sub
@@ -169,8 +251,8 @@ End Sub
 
 'replaceChild
 Sub replaceChild(newChild As JSElement, oldChild As JSElement) As JSElement
-	Dim bo1 As BANanoObject = newChild.ToObject
-	Dim bo2 As BANanoObject = oldChild.ToObject
+	Dim bo1 As BANanoObject = newChild.Element
+	Dim bo2 As BANanoObject = oldChild.Element
 	Element.RunMethod("replaceChild", Array(bo1, bo2))
 	Return Me
 End Sub
@@ -184,6 +266,15 @@ End Sub
 'setAttribute
 Sub setAttribute(name As String, value As String) As JSElement
 	Element.RunMethod("setAttribute", Array(name, value))
+	Return Me
+End Sub
+
+'shortcut - set multiple attributes
+Sub setAttributes(kv As Map) As JSElement
+	For Each k As String In kv.Keys
+		Dim v As String = kv.Get(k)
+		setAttribute(k, v)
+	Next
 	Return Me
 End Sub
 
@@ -555,7 +646,7 @@ End Sub
 
 'set an attribute node created with createAttribute
 Sub setAttributeNode(attr As JSElement) As JSElement
-	Dim bo As BANanoObject = attr.toobject
+	Dim bo As BANanoObject = attr.Element
 	Element.RunMethod("setAttributeNode", Array(bo))
 	Return Me
 End Sub
@@ -607,12 +698,6 @@ End Sub
 Sub webkitRequestFullscreen As JSElement
 	Element.RunMethod("webkitRequestFullscreen", Null)
 	Return Me
-End Sub
-
-'convert class to bananoobject
-Sub ToObject As BANanoObject
-	Dim bo As BANanoElement = banano.ToObject(Element)
-	Return bo
 End Sub
 
 'get the name
@@ -796,13 +881,13 @@ End Sub
 
 'isSameNode
 Sub isSameNode(node As JSElement) As Boolean
-	Dim n As BANanoObject = node.ToObject 
+	Dim n As BANanoObject = node.Element 
 	Return Element.RunMethod("isSameNode", Array(n)).result
 End Sub
 
 'isEqualNode
 Sub isEqualNode(node As JSElement) As Boolean
-	Dim n As BANanoObject = node.Toobject
+	Dim n As BANanoObject = node.Element
 	Return Element.RunMethod("isEqualNode", Array(n)).Result
 End Sub
 
@@ -843,21 +928,21 @@ End Sub
 
 'prepend
 Sub prepend(child As JSElement) As JSElement
-	Dim bo As BANanoObject = child.ToObject
+	Dim bo As BANanoObject = child.Element
 	Element.RunMethod("prepend", Array(bo))
 	Return Me
 End Sub
 
 'appendChild
 Sub appendChild(jse As JSElement) As JSElement
-	Dim bo As BANanoObject = jse.ToObject
+	Dim bo As BANanoObject = jse.Element
 	Element.RunMethod("appendChild", Array(bo))
 	Return Me
 End Sub
 
 'replaceWith
 Sub replaceWith(child As JSElement) As JSElement
-	Dim bo As BANanoObject = child.ToObject
+	Dim bo As BANanoObject = child.Element
 	Element.RunMethod("replaceWith", Array(bo))
 	Return Me
 End Sub
@@ -882,7 +967,7 @@ End Sub
 
 'removeChild
 Sub removeChild(jse As JSElement) As JSElement
-	Dim bo As BANanoObject = jse.ToObject
+	Dim bo As BANanoObject = jse.Element
 	Element.RunMethod("removeChild", Array(bo))
 	Return Me
 End Sub
@@ -895,7 +980,7 @@ End Sub
 
 'removeAttributeNode
 Sub removeAttributeNode(jse As JSElement) As JSElement
-	Dim bo As BANanoObject = jse.ToObject
+	Dim bo As BANanoObject = jse.Element
 	Element.RunMethod("removeAttributeNode", Array(bo))
 	Return Me
 End Sub
@@ -940,6 +1025,14 @@ End Sub
 Sub addClass(className As String) As JSElement
 	classList.add(className)
 	Return Me 
+End Sub
+
+'add classes
+Sub addClasses(classNames As List) As JSElement
+	For Each strName As String In classNames
+		addClass(strName)
+	Next
+	Return Me
 End Sub
 
 'shortcut - hasClass
@@ -1036,7 +1129,7 @@ End Sub
 
 'compareDocumentPosition
 Sub compareDocumentPosition(node As JSElement) As Int
-	Dim boNode As BANanoObject = node.ToObject
+	Dim boNode As BANanoObject = node.Element
 	Return Element.RunMethod("compareDocumentPosition", Array(boNode)).result
 End Sub
 
@@ -1066,7 +1159,7 @@ End Sub
 
 'contains child
 Sub contains1(child As JSElement) As Boolean
-	Dim bo As BANanoObject = child.ToObject
+	Dim bo As BANanoObject = child.Element
 	Dim rslt As Boolean = Element.RunMethod("containts", Array(bo)).Result
 	Return rslt
 End Sub
@@ -1191,5 +1284,17 @@ End Sub
 'set action
 Sub setaction(value As String) As JSElement
 	Element.SetField("action", value)
+	Return Me
+End Sub
+
+'shortcut add event listener
+Sub on(eventName As String, module As Object, methodName As String) As JSElement
+	addEventListener(module, eventName, methodName, False)
+	Return Me
+End Sub
+
+'shortcut - remove event listener
+Sub off(eventName As String, module As Object, methodName As String) As JSElement
+	removeEventListener(module, eventName, methodName, False)
 	Return Me
 End Sub

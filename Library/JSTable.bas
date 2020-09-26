@@ -142,9 +142,13 @@ Sub SetHeaders(hdrs As List) As JSElement
 	header = createTHead
 	'create a header row
 	Dim hrow As JSElement = header.insertRow(0)
+	hrow.id = $"${ID}r0"$
 	'
+	Dim cc As Int = -1
 	For Each fld As String In hdrs
 		Dim hcell As JSElement = hrow.insertCell(-1)
+		cc = cc + 1
+		hcell.id = $"${hrow.id}c${cc}"$
 		hcell.innerHTML = fld
 	Next
 	Return hrow
@@ -154,8 +158,14 @@ End Sub
 Sub AddRow(hdrs As List) As JSElement
 	'create the row
 	Dim trow As JSElement = insertRow(-1)
+	Dim rCnt As Int = rows.Size - 1
+	trow.id = $"${ID}r${rCnt}"$
+	
+	Dim cc As Int = -1
 	For Each fld As String In hdrs
 		Dim hcell As JSElement = trow.insertCell(-1)
+		cc = cc + 1
+		hcell.id = $"${trow.id}c${cc}"$
 		hcell.textContent = fld
 	Next
 	Return trow
@@ -189,9 +199,13 @@ Sub SetFooters(hdrs As List) As JSElement
 	footer = createTFoot
 	'create a footer row
 	Dim frow As JSElement = footer.insertRow(0)
+	frow.id = $"f${ID}r0"$
 	'
+	Dim cc As Int = -1
 	For Each fld As String In hdrs
 		Dim hcell As JSElement = frow.insertCell(-1)
+		cc = cc + 1
+		hcell.id = $"${frow.id}c${cc}"$
 		hcell.textContent = fld
 	Next
 	Return frow
@@ -203,7 +217,9 @@ Public Sub SetFooter(footerText As String, colspan As Int) As JSElement
 	footer = createTFoot
 	'create a footer row
 	Dim frow As JSElement = footer.insertRow(0)
+	frow.id = $"f${ID}r0"$
 	Dim hcell As JSElement = frow.insertCell(-1)
+	hcell.id = $"${frow.id}c0"$
 	hcell.textContent = footerText
 	hcell.colSpan = colspan
 	Return frow
