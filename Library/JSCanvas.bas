@@ -814,3 +814,30 @@ Sub toDataURL1(args As List) As JSCanvas
 	Return Me
 End Sub
 
+' helper - draw a line
+Sub drawLine(startX As Int , startY As Int, endX As Int, endY As Int) As JSCanvas
+    beginPath1
+    moveTo1(startX, startY)
+    lineTo1(endX,endY)
+    stroke1
+	Return Me
+End Sub
+
+'helper - draw arc
+Sub drawArc(centerX As Int, centerY As Int, radius As Double, startAngle As Int, endAngle As Int) As JSCanvas
+    beginPath1
+    arc1(centerX, centerY, radius, startAngle, endAngle)
+    stroke1
+	Return Me
+End Sub
+
+'helper - draw pie slice
+Sub drawPieSlice(centerX As Int, centerY As Int, radius As Double, startAngle As Int, endAngle As Int, color As String) As JSCanvas
+    setfillStyle(color)
+    beginPath1
+    moveTo1(centerX,centerY)
+    arc1(centerX, centerY, radius, startAngle, endAngle)
+    closePath1
+    fill1
+	Return Me
+End Sub

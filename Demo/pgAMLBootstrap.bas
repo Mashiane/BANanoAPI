@@ -43,7 +43,7 @@ Sub Init
 	div.addClass("container")
 	'set data source
 	'div.setAttribute("appml-data", "local?model=./assets/proto_customers_single.json")
-	'div.setAttribute("appml-data", "local?model=./assets/proto_customers_all.json")
+	div.setAttribute("appml-data", "local?model=./assets/proto_customers_all.json")
 	div.setattribute("appml-data", "local?model=./assets/model_customerslist.json")
 	
 	Dim h1 As JSElement = document.createElement("H1")

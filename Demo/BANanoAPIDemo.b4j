@@ -99,43 +99,44 @@ Module23=pgCanvasDay14
 Module24=pgCanvasDay15
 Module25=pgCanvasDay16
 Module26=pgCanvasDay17
-Module27=pgClassList
-Module28=pgComparison
-Module29=pgDates
+Module27=pgCanvasDay18
+Module28=pgClassList
+Module29=pgComparison
 Module3=pgAMLController
-Module30=pgDoLoop
-Module31=pgDynamicStyles
-Module32=pgFireClick
-Module33=pgForLoop
-Module34=pgFunctions
-Module35=pgHelloFunction
-Module36=pgHelloWorld
-Module37=pgIfStatement
-Module38=pgIIF
-Module39=pgIndex
+Module30=pgDates
+Module31=pgDoLoop
+Module32=pgDynamicStyles
+Module33=pgFireClick
+Module34=pgForLoop
+Module35=pgFunctions
+Module36=pgHelloFunction
+Module37=pgHelloWorld
+Module38=pgIfStatement
+Module39=pgIIF
 Module4=pgAMLData
-Module40=pgLocalStorage
-Module41=pgLogical
-Module42=pgLoopExiting
-Module43=pgMapObject
-Module44=pgMath
-Module45=pgObjects
-Module46=pgOperators
-Module47=pgSessionStorage
-Module48=pgStyle
-Module49=pgSwitch
+Module40=pgIndex
+Module41=pgLocalStorage
+Module42=pgLogical
+Module43=pgLoopExiting
+Module44=pgMapObject
+Module45=pgMath
+Module46=pgObjects
+Module47=pgOperators
+Module48=pgSessionStorage
+Module49=pgStyle
 Module5=pgAMLPHP
-Module50=pgTable
-Module51=pgVariables
-Module52=pgVisibility
-Module53=pgWhileLoop
+Module50=pgSwitch
+Module51=pgTable
+Module52=pgVariables
+Module53=pgVisibility
+Module54=pgWhileLoop
 Module6=pgappml
 Module7=pgappmlobjects
 Module8=pgArrays
 Module9=pgBulb
 NumberOfFiles=37
 NumberOfLibraries=5
-NumberOfModules=53
+NumberOfModules=54
 Version=8.5
 @EndOfDesignText@
 #IgnoreWarnings: 12, 15
@@ -298,7 +299,8 @@ Sub BANano_Ready
 	'pgCanvasDay14.Init
 	'pgCanvasDay15.Init
 	'pgCanvasDay16.init
-	pgCanvasDay17.Init
+	'pgCanvasDay17.Init
+	pgCanvasDay18.init
 	
 	
 	'**** Application Modelling Langunage (AML)

@@ -18,9 +18,11 @@ Sub Init
 	window.Initialize
 	'get the document
 	document = window.document
+	'get the document body
 	body = document.body
+	'change the page title on browser
 	document.title = "BANanoAPI - Canvas Day 01"
-	'
+	'create a table
 	Dim tb1 As JSTable
 	tb1.Initialize(document, "tbcanvas")
 	Dim cols As List = canvdays.Columns("fillStyle", 5)
