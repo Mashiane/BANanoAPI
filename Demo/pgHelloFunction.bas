@@ -31,5 +31,5 @@ Sub Init
 End Sub
 
 Sub sayHello(e As BANanoEvent)
-	window.alert("Hello world!")
+	BANano.window.alert("Hello world!")
 End Sub

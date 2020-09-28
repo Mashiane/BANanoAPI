@@ -1,42 +1,44 @@
 ﻿AppType=JavaFX
 Build1=Default,b4j.example
 File1=appml.php
-File10=fa-brands-400.svg
-File11=fa-brands-400.ttf
-File12=fa-brands-400.woff
-File13=fa-brands-400.woff2
-File14=fa-regular-400.eot
-File15=fa-regular-400.svg
-File16=fa-regular-400.ttf
-File17=fa-regular-400.woff
-File18=fa-regular-400.woff2
-File19=fa-solid-900.eot
+File10=fa-brands-400.eot
+File11=fa-brands-400.svg
+File12=fa-brands-400.ttf
+File13=fa-brands-400.woff
+File14=fa-brands-400.woff2
+File15=fa-regular-400.eot
+File16=fa-regular-400.svg
+File17=fa-regular-400.ttf
+File18=fa-regular-400.woff
+File19=fa-regular-400.woff2
 File2=appml_config.php
-File20=fa-solid-900.svg
-File21=fa-solid-900.ttf
-File22=fa-solid-900.woff
-File23=fa-solid-900.woff2
-File24=fontawesome.min.css
-File25=img_lamp.jpg
-File26=img_the_scream.jpg
-File27=jquery-3.5.1.slim.min.js
-File28=model_customerform.json
-File29=model_customerslist.json
+File20=fa-solid-900.eot
+File21=fa-solid-900.svg
+File22=fa-solid-900.ttf
+File23=fa-solid-900.woff
+File24=fa-solid-900.woff2
+File25=fontawesome.min.css
+File26=hat.png
+File27=img_lamp.jpg
+File28=img_the_scream.jpg
+File29=jquery-3.5.1.slim.min.js
 File3=bootstrap.min.css
-File30=ordering.bjl
-File31=pic_bulboff.gif
-File32=pic_bulbon.gif
-File33=popper.min.js
-File34=proto_customer.js
-File35=proto_customers_all.json
-File36=proto_customers_single.json
-File37=styles.txt
+File30=model_customerform.json
+File31=model_customerslist.json
+File32=ordering.bjl
+File33=pic_bulboff.gif
+File34=pic_bulbon.gif
+File35=popper.min.js
+File36=proto_customer.js
+File37=proto_customers_all.json
+File38=proto_customers_single.json
+File39=styles.txt
 File4=bootstrap.min.js
-File5=cd_catalog.json
-File6=cd_catalog.txt
-File7=customers.json
-File8=customers.php
-File9=fa-brands-400.eot
+File5=cat.png
+File6=cd_catalog.json
+File7=cd_catalog.txt
+File8=customers.json
+File9=customers.php
 FileGroup1=Default Group
 FileGroup10=Default Group
 FileGroup11=Default Group
@@ -68,6 +70,8 @@ FileGroup34=Default Group
 FileGroup35=Default Group
 FileGroup36=Default Group
 FileGroup37=Default Group
+FileGroup38=Default Group
+FileGroup39=Default Group
 FileGroup4=Default Group
 FileGroup5=Default Group
 FileGroup6=Default Group
@@ -138,7 +142,7 @@ Module6=pgappml
 Module7=pgappmlobjects
 Module8=pgArrays
 Module9=pgBulb
-NumberOfFiles=37
+NumberOfFiles=39
 NumberOfLibraries=5
 NumberOfModules=58
 Version=8.5
@@ -266,7 +270,7 @@ Sub Application_Error (Error As Exception, StackTrace As String) As Boolean
 End Sub
 
 Sub BANano_Ready
-	'pgTests.init
+	pgTests.init
 	'pgHelloWorld.init
 	'pgHelloFunction.Init
 	'pgVariables.Init
@@ -288,7 +292,7 @@ Sub BANano_Ready
 	'pgMapObject.Init
 	
 	'**** CANVAS
-	pgCanvasDay01.Init
+	'pgCanvasDay01.Init
 	'pgCanvasDay02.Init
 	'pgCanvasDay03.Init
 	'pgCanvasDay04.Init
