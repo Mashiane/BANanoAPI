@@ -58,6 +58,6 @@ ModuleClosedNodes6=
 ModuleClosedNodes7=
 ModuleClosedNodes8=
 ModuleClosedNodes9=
-NavigationStack=JSElement,Initialize,11,6,JSCanvas,fillRect1,563,0,JSCanvas,rect1,562,0,JSCanvas,setfillStyle,207,0,JSCanvas,getstrokeStyle,202,0,JSCanvas,toDataURL1,811,0,JSCanvas,drawPieSlice,837,6,JSCanvas,drawArc,825,6,JSCanvas,drawLine,816,6,JSMath,min1,178,0,Main,Process_Globals,13,0
+NavigationStack=JSDocument,ToJSStyleSheet,707,0,JSDocument,referrer,682,0,JSDocument,documentElement,634,0,JSDocument,createElement1,717,0,JSDocument,Class_Globals,24,0,JSDate,toDateTime,273,0,JSDate,toLocaleTimeString,265,0,JSDate,Initialize,9,0,JSElement,setscrollLeft,640,0,JSElement,Class_Globals,4,0,JSElement,firstChild,1226,0
 SelectedBuild=0
 VisibleModules=

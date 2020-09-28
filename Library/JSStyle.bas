@@ -55,6 +55,17 @@ Sub removeProperty(value As String) As JSStyle
 	Return Me
 End Sub
 
+'get float
+Sub getfloat1() As String
+	Return Style.GetField("float").result
+End Sub
+
+'set float
+Sub setfloat1(value As String) As JSStyle
+	Style.SetField("float", value)
+	Return Me
+End Sub
+
 'get display
 Sub getdisplay() As String
 	Return Style.GetField("display").result

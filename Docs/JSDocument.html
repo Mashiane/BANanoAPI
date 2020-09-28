@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>JSDocument</title>
+    <style type="text/css">
+        body {
+            background-color: #E1DEE6;
+            color: #222;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            margin: 0;
+            padding: 0;
+        }
+        
+        h3 {
+            background-color: silver;
+            margin: 0;
+            padding: 5px;
+        }
+        
+        ul {
+            list-style: none;
+            margin: 5px;
+            padding: 0;
+        }
+        
+        ul li {
+            background-color: #FFF;
+            border: 1px solid #666;
+            margin: 0;
+            padding: 5px;
+        }
+        
+        ul li:first-child,
+        h3 {
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+        
+        ul li:last-child,
+        h3 {
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>JSDocument</h3>
+    <ul>
+        <li>
+            <h3>SetField (<span style='color:blue'>k</span> As <span style='color:#green'>String</span>, <span style='color:blue'>v</span> As <span style='color:#green'>Object</span>) As <span style='color:#green'>JSDocument</span></h3>
+        </li>
+        <li>
+            SetField<br>
+            <code><br>
+document.SetField("x", y)<br>
+</code><br>
+        </li>
+        <li>
+            <h3>GetField (<span style='color:blue'>k</span> As <span style='color:#green'>String</span>) As <span style='color:#green'>BANanoObject</span></h3>
+        </li>
+        <li>
+            GetField<br>
+            <code><br>
+dim rslt As String = document.GetField("x")<br>
+</code><br>
+        </li>
+        <li>
+            <h3>addBR (<span style='color:blue'>jse</span> As <span style='color:#green'>JSElement</span>) As <span style='color:#green'>JSDocument</span></h3>
+        </li>
+        <li>
+            addBR<br>
+            <code><br>
+document.addBR(parentNode)<br>
+</code><br>
+        </li>
+        <li>
+            <h3>addHR (<span style='color:blue'>jse</span> As <span style='color:#green'>JSElement</span>) As <span style='color:#green'>JSDocument</span></h3>
+        </li>
+        <li>
+            addHR<br>
+            <code><br>
+document.addHR(parentNode)<br>
+</code><br>
+        </li>
+        <li>
+            <h3>addScript (<span style='color:blue'>sID</span> As <span style='color:#green'>String</span>, <span style='color:blue'>sURL</span> As <span style='color:#green'>String</span>) As <span style='color:#green'>JSDocument</span></h3>
+        </li>
+        <li>
+            addScript<br>
+            <code><br>
+document.addScript("bootstrap", "http://www.getbootstrap.com")<br>
+</code><br>
+        </li>
+        <li>
+            <h3>activeElement As <span style='color:#green'>JSElement</span></h3>
+        </li>
+        <li>
+            activeElement<br>
+            <code><br>
+dim jse as JSElement = document.activeElement<br>
+</code><br>
+        </li>
+        <li>
+            <h3>adoptNode (<span style='color:blue'>node</span> As <span style='color:#green'>JSElement</span>) As <span style='color:#green'>JSElement</span></h3>
+        </li>
+        <li>
+            adoptNode<br>
+            <code><br>
+dim jse as JSElement = document.adoptNode(sourceNode)<br>
+</code><br>
+        </li>
+        <li>
+            <h3>applets() As <span style='color:#green'>List</span></h3>
+        </li>
+        <li>
+            applets<br>
+            <code><br>
+dim applets as List = document.applets<br>
+</code><br>
+        </li>
+        <li>
+            <h3>setcookie (<span style='color:blue'>txt</span> As <span style='color:#green'>String</span>) As <span style='color:#green'>JSDocument</span></h3>
+        </li>
+        <li>
+            set cookie<br>
+            <code><br>
+document.cookie = "this cookir"<br>
+</code><br>
+        </li>
+        <li>
+            <h3>getcookie() As <span style='color:#green'>String</span></h3>
+        </li>
+        <li>
+            get cookie<br>
+            <code><br>
+dim cookie As String = document.cookie<br>
+</code><br>
+        </li>
+        <li>
+            <h3>hasFocus As <span style='color:#green'>Boolean</span></h3>
+        </li>
+        <li>
+            hasFocus<br>
+            <code><br>
+dim hasFocus As Boolean = document.hasFocus<br>
+</code><br>
+        </li>
+        <li>
+            <h3>URL As <span style='color:#green'>String</span></h3>
+        </li>
+        <li>
+            URL<br>
+            <code><br>
+dim url As Boolean = document.url<br>
+</code><br>
+        </li>
+        <li>
+            <h3>settitle (<span style='color:blue'>tt</span> As <span style='color:#green'>String</span>) As <span style='color:#green'>JSDocument</span></h3>
+        </li>
+        <li>
+            set title<br>
+            <code><br>
+document.title = "My New Page"<br>
+</code><br>
+        </li>
+        <li>
+            <h3>gettitle() As <span style='color:#green'>String</span></h3>
+        </li>
+        <li>
+            get the title<br>
+            <code><br>
+dim title As String = document.title<br>
+</code><br>
+        </li>
+        <li>
+            <h3>scripts() As <span style='color:#green'>List</span></h3>
+        </li>
+        <li>
+            scripts<br>
+            <code><br>
+Dim scripts As List = document.scripts<br>
+</code><br>
+        </li>
+        <li>
+            <h3>readyState As <span style='color:#green'>String</span></h3>
+        </li>
+        <li>
+            readyState<br>
+            <code><br>
+Dim readyState As String = document.readyState<br>
+</code><br>
+        </li>
+        <li>
+            <h3>lastModified As <span style='color:#green'>String</span></h3>
+        </li>
+        <li>
+            lastModified<br>
+            <code><br>
+Dim lastModifield As Int = document.lastModified<br>
+Dim jDate As JDate<br>
+jDate.Initialize(lastModifield)<br>
+Log(jDate.toDateTime)<br>
+</code><br>
+        </li>
+        <li>
+            <h3>links As <span style='color:#green'>List</span></h3>
+        </li>
+        <li>
+            links<br>
+            <code><br>
+Dim links As List = document.links<br>
+</code><br>
+        </li>
+        <li>
+            <h3>normalize As <span style='color:#green'>JSDocument</span></h3>
+        </li>
+        <li>
+            normalize<br>
+            <code><br>
+document.normalize<br>
+</code><br>
+        </li>
+        <li>
+            <h3>useStrict</h3>
+        </li>
+        <li>
+            use strict to ensure variables are defined<br>
+            <code><br>
+document.useStrict<br>
+</code><br>
+        </li>
+        <li>
+            <h3>execCommand (<span style='color:blue'>command</span> As <span style='color:#green'>String</span>) As <span style='color:#green'>JSDocument</span></h3>
+        </li>
+        <li>
+            execCommand<br>
+            <code><br>
+document.execCommand("PRINT")<br>
+</code><br>
+        </li>
+        <li>
+            <h3>fullscreenElement As <span style='color:#green'>JSElement</span></h3>
+        </li>
+        <li>
+            fullscreenElement<br>
+            <code><br>
+Dim jse As JSElemnt = document.fullscreenElement<br>
+</code><br>
+        </li>
+        <li>
+            <h3>fullscreenEnabled As <span style='color:#green'>Boolean</span></h3>
+        </li>
+        <li>
+            fullscreenEnabled<br>
+            <code><br>
+Dim fullscreenEnabled As Boolean = document.fullscreenEnabled<br>
+</code><br>
+        </li>
+        <li>
+            <h3>webkitFullscreenEnabled As <span style='color:#green'>Boolean</span></h3>
+        </li>
+        <li>
+            webkitFullscreenEnabled<br>
+            <code><br>
+Dim webkitFullscreenEnabled As Boolean = document.webkitFullscreenEnabled<br>
+</code><br>
+        </li>
+        <li>
+            <h3>mozFullScreenEnabled As <span style='color:#green'>Boolean</span></h3>
+        </li>
+        <li>
+            mozFullScreenEnabled<br>
+            <code><br>
+Dim mozFullScreenEnabled As Boolean = document.mozFullScreenEnabled<br>
+</code><br>
+        </li>
+        <li>
+            <h3>msFullscreenEnabled As <span style='color:#green'>Boolean</span></h3>
+        </li>
+        <li>
+            msFullscreenEnabled<br>
+            <code><br>
+Dim msFullscreenEnabled As Boolean = document.msFullscreenEnabled<br>
+</code><br>
+        </li>
+        <li>
+            <h3>images() As <span style='color:#green'>List</span></h3>
+        </li>
+        <li>
+            images<br>
+            <code><br>
+Dim images As List = document.images<br>
+</code><br>
+        </li>
+        <li>
+            <h3>forms() As <span style='color:#green'>List</span></h3>
+        </li>
+        <li>
+            forms<br>
+            <code><br>
+Dim forms As List = document.forms<br>
+</code><br>
+        </li>
+        <li>
+            <h3>domain() As <span style='color:#green'>String</span></h3>
+        </li>
+        <li>
+            get the domain<br>
+            <code><br>
+Dim domain As String = document.domain<br>
+</code><br>
+        </li>
+        <li>
+            <h3>embeds() As <span style='color:#green'>List</span></h3>
+        </li>
+        <li>
+            get embeds in the document<br>
+            <code><br>
+Dim embeds As List = document.embeds<br>
+</code><br>
+        </li>
+        <li>
+            <h3>on (<span style='color:blue'>eventName</span> As <span style='color:#green'>String</span>, <span style='color:blue'>module</span> As <span style='color:#green'>Object</span>, <span style='color:blue'>methodName</span> As <span style='color:#green'>String</span>)
+                As <span style='color:#green'>JSDocument</span></h3>
+        </li>
+        <li>
+            shortcut add event listener<br>
+            <code><br>
+document.on("click", Me, "doThis")<br>
+</code><br>
+        </li>
+        <li>
+            <h3>off (<span style='color:blue'>eventName</span> As <span style='color:#green'>String</span>, <span style='color:blue'>module</span> As <span style='color:#green'>Object</span>, <span style='color:blue'>methodName</span> As <span style='color:#green'>String</span>)
+                As <span style='color:#green'>JSDocument</span></h3>
+        </li>
+        <li>
+            shortcut - remove event listener<br>
+            <code><br>
+document.off("click", Me, "doThis")<br>
+body.appendChild(el)<br>
+</code><br>
+        </li>
+        <li>
+            <h3>addEventListener (<span style='color:blue'>Module</span> As <span style='color:#green'>Object</span>, <span style='color:blue'>eventName</span> As <span style='color:#green'>String</span>, <span style='color:blue'>MethodName</span> As
+                <span
+                    style='color:#green'>String</span>, <span style='color:blue'>useCapture</span> As <span style='color:#green'>Boolean</span>)</h3>
+        </li>
+        <li>
+            add an event listener to the document<br> by default useCapture is false so that events bubble up<br>
+            <code><br>
+document.addEventListener(Me, "click", "doThis", False)<br>
+Sub doThis(e As BANanoEvent)<br>
+End Sub<br>
+</code><br>
+        </li>
+        <li>
+            <h3>removeEventListener (<span style='color:blue'>Module</span> As <span style='color:#green'>Object</span>, <span style='color:blue'>eventName</span> As <span style='color:#green'>String</span>, <span style='color:blue'>MethodName</span> As
+                <span
+                    style='color:#green'>String</span>, <span style='color:blue'>useCapture</span> As <span style='color:#green'>Boolean</span>)</h3>
+        </li>
+        <li>
+            remove an event listener to the document<br>
+            <code><br>
+document.removeEventListener(Me, "click", "doThis", True)<br>
+</code><br>
+        </li>
+        <li>
+            <h3>styleSheets() As <span style='color:#green'>List</span></h3>
+        </li>
+        <li>
+            get styleSheets<br>
+            <code><br>
+dim styleSheets As List = document.styleSheets<br>
+For each styleSheet As BANanoObject in styleSheets<br>
+Dim jss As JSStyleSheet = ToJSStyleSheet(styleSheet)<br>
+Next<br>
+</code><br>
+        </li>
+        <li>
+            <h3>getdocumentURI() As <span style='color:#green'>String</span></h3>
+        </li>
+        <li>
+            get the documentURI<br>
+            <code><br>
+dim documentURI As String = document.documentURI<br>
+</code><br>
+        </li>
+        <li>
+            <h3>setdocumentURI (<span style='color:blue'>uri</span> As <span style='color:#green'>String</span>) As <span style='color:#green'>JSDocument</span></h3>
+        </li>
+        <li>
+            set the documentURI<br>
+            <code><br>
+document.documentURI = documentURI<br>
+</code><br>
+        </li>
+        <li>
+            <h3>setdesignMode (<span style='color:blue'>status</span> As <span style='color:#green'>String</span>) As <span style='color:#green'>JSDocument</span></h3>
+        </li>
+        <li>
+            set the design mode to on|off<br>
+            <code><br>
+document.designMode = True/False<br>
+</code><br>
+        </li>
+        <li>
+            <h3>getdesignMode() As <span style='color:#green'>String</span></h3>
+        </li>
+        <li>
+            get the design mode<br>
+            <code><br>
+dim designMode As Boolean = document.designMode<br>
+</code><br>
+        </li>
+        <li>
+            <h3>open() As <span style='color:#green'>JSDocument</span></h3>
+        </li>
+        <li>
+            open<br>
+            <code><br>
+document.open<br>
+</code><br>
+        </li>
+        <li>
+            <h3>characterSet As <span style='color:#green'>String</span></h3>
+        </li>
+        <li>
+            get the character set of the document<br>
+            <code><br>
+Dim characterSet As String = document.characterSet<br>
+</code><br>
+        </li>
+        <li>
+            <h3>createAttribute (<span style='color:blue'>argument</span> As <span style='color:#green'>String</span>) As <span style='color:#green'>BANanoObject</span></h3>
+        </li>
+        <li>
+            create an attribute<br>
+            <code><br>
+Dim jse As JSElement = document.createAttribute("class")<br>
+jse.value = "blue"<br>
+parentNode.setAttributeNode(jse)<br>
+</code><br>
+        </li>
+        <li>
+            <h3>createComment (<span style='color:blue'>text</span> As <span style='color:#green'>String</span>) As <span style='color:#green'>JSElement</span></h3>
+        </li>
+        <li>
+            create a comment<br>
+            <code><br>
+document.createComment("This is a comment")<br>
+</code><br>
+        </li>
+        <li>
+            <h3>close() As <span style='color:#green'>JSDocument</span></h3>
+        </li>
+        <li>
+            close<br>
+            <code><br>
+document.close<br>
+</code><br>
+        </li>
+        <li>
+            <h3>write (<span style='color:blue'>xvalue</span> As <span style='color:#green'>String</span>) As <span style='color:#green'>JSDocument</span></h3>
+        </li>
+        <li>
+            write<br>
+            <code><br>
+document.write("This is BANanoAPI")<br>
+</code><br>
+        </li>
+        <li>
+            <h3>writeln (<span style='color:blue'>xvalue</span> As <span style='color:#green'>String</span>) As <span style='color:#green'>JSDocument</span></h3>
+        </li>
+        <li>
+            writeln<br>
+            <code><br>
+document.writeln("Im not sure if this works!")<br>
+</code><br>
+        </li>
+        <li>
+            <h3>anchors() As <span style='color:#green'>List</span></h3>
+        </li>
+        <li>
+            return anchors in the document<br>
+            <code><br>
+Dim anchors As List = document.anchors<br>
+</code><br>
+        </li>
+        <li>
+            <h3>baseURI As <span style='color:#green'>String</span></h3>
+        </li>
+        <li>
+            get base uri of the document<br>
+            <code><br>
+Dim baseURI As List = document.baseURI<br>
+</code><br>
+        </li>
+        <li>
+            <h3>createElement (<span style='color:blue'>arguements</span> As <span style='color:#green'>String</span>) As <span style='color:#green'>JSElement</span></h3>
+        </li>
+        <li>
+            createElement<br>
+            <code><br>
+Dim el As JSElement = document.createElement("A")<br>
+body.appendChild(el)<br>
+</code><br>
+        </li>
+        <li>
+            <h3>createDocumentFragment() As <span style='color:#green'>JSElement</span></h3>
+        </li>
+        <li>
+            createDocumentFragment<br>
+            <code><br>
+Dim el As JSElement = document.createElement("A")<br>
+body.appendChild(el)<br>
+</code><br>
+        </li>
+        <li>
+            <h3>createTextNode (<span style='color:blue'>value</span> As <span style='color:#green'>String</span>) As <span style='color:#green'>JSElement</span></h3>
+        </li>
+        <li>
+            createTextNode<br>
+            <code><br>
+Dim el As JSElement = document.createTextNode("A")<br>
+body.appendChild(el)<br>
+</code><br>
+        </li>
+        <li>
+            <h3>getElementById (<span style='color:blue'>arguements</span> As <span style='color:#green'>String</span>) As <span style='color:#green'>JSElement</span></h3>
+        </li>
+        <li>
+            getElementById<br>
+            <code><br>
+Dim el As JSElement = document.getElementById("id")<br>
+</code><br>
+        </li>
+        <li>
+            <h3>getElementsByTagName (<span style='color:blue'>arguements</span> As <span style='color:#green'>String</span>) As <span style='color:#green'>List</span></h3>
+        </li>
+        <li>
+            getElementsByTagName<br>
+            <code><br>
+Dim el As JSElement = document.getElementsByTagName("p")<br>
+</code><br>
+        </li>
+        <li>
+            <h3>ToJSElement (<span style='color:blue'>bo</span> As <span style='color:#green'>BANanoObject</span>) As <span style='color:#green'>JSElement</span></h3>
+        </li>
+        <li>
+            convert bananoobject to jselement<br>
+            <code><br>
+Dim jse As JSElement = document.ToJSElement(BANanoObject)<br>
+</code><br>
+        </li>
+        <li>
+            <h3>getElementsByName (<span style='color:blue'>arguments</span> As <span style='color:#green'>String</span>) As <span style='color:#green'>List</span></h3>
+        </li>
+        <li>
+            getElementsByName<br>
+            <code><br>
+Dim els As List = document.getElementsByName("radio")<br>
+</code><br>
+        </li>
+        <li>
+            <h3>getElementsByClassName (<span style='color:blue'>arguements</span> As <span style='color:#green'>BANanoElement</span>) As <span style='color:#green'>List</span></h3>
+        </li>
+        <li>
+            getElementsByClassName<br>
+            <code><br>
+Dim els As List = document.getElementsByClassName("brown")<br>
+</code><br>
+        </li>
+        <li>
+            <h3>querySelector (<span style='color:blue'>arguments</span> As <span style='color:#green'>String</span>) As <span style='color:#green'>JSElement</span></h3>
+        </li>
+        <li>
+            querySelector<br>
+            <code><br>
+Dim els As JSElement = document.querySelector(".brown")<br>
+</code><br>
+        </li>
+        <li>
+            <h3>querySelectorAll (<span style='color:blue'>arguments</span> As <span style='color:#green'>String</span>) As <span style='color:#green'>List</span></h3>
+        </li>
+        <li>
+            querySelectorAll<br>
+            <code><br>
+Dim els As List = document.querySelectorAll(".brown")<br>
+</code><br>
+        </li>
+        <li>
+            <h3>documentElement() As <span style='color:#green'>JSElement</span></h3>
+        </li>
+        <li>
+            documentElement<br>
+            <code><br>
+Dim els As JSElement = document.documentElement("A")<br>
+</code><br>
+        </li>
+        <li>
+            <h3>doctype As <span style='color:#green'>String</span></h3>
+        </li>
+        <li>
+            'defaultView<br> Sub defaultView As JSWindow<br> Dim bw As BANanoObject = d.GetField("defaultView")<br> Return ToJSWindow(bw)<br> End Sub<br>
+            <br> doctype
+            <br>
+            <code><br>
+Dim doctype As String = document.doctype<br>
+</code><br>
+        </li>
+        <li>
+            <h3>documentMode As <span style='color:#green'>String</span></h3>
+        </li>
+        <li>
+            documentMode<br>
+            <code><br>
+Dim documentMode As String = document.documentMode<br>
+</code><br>
+        </li>
+        <li>
+            <h3>importNode (<span style='color:blue'>node</span> As <span style='color:#green'>JSElement</span>, <span style='color:blue'>deep</span> As <span style='color:#green'>Boolean</span>) As <span style='color:#green'>JSElement</span></h3>
+        </li>
+        <li>
+            importNode<br>
+            <code><br>
+Dim el As JSElement = document.importNode(node, True)<br>
+</code><br>
+        </li>
+        <li>
+            <h3>inputEncoding As <span style='color:#green'>String</span></h3>
+        </li>
+        <li>
+            inputEncoding<br>
+            <code><br>
+Dim inputEncoding As String = document.inputEncoding<br>
+</code><br>
+        </li>
+        <li>
+            <h3>referrer As <span style='color:#green'>String</span></h3>
+        </li>
+        <li>
+            referrer<br>
+            <code><br>
+Dim referrer As String = document.referrer<br>
+</code><br>
+        </li>
+        <li>
+            <h3>ToJSStyleSheet (<span style='color:blue'>bo</span> As <span style='color:#green'>BANanoObject</span>) As <span style='color:#green'>JSStyleSheet</span></h3>
+        </li>
+        <li>
+            to jsStyleSheet<br> Dim styleSheets As List = document.stylesheets<br> For each styleSheet As BANanoObject in styleSheets<br> Dim jss As JSStyleSheet = ToJSStyleSheet(styleSheet)<br> Next
+            <br>
+            </code><br>
+        </li>
+        <li>
+            <h3>createElement1 (<span style='color:blue'>nodeType</span> As <span style='color:#green'>String</span>, <span style='color:blue'>attrs</span> As <span style='color:#green'>Map</span>, <span style='color:blue'>children</span> As <span style='color:#green'>List</span>)
+                As <span style='color:#green'>JSElement</span></h3>
+        </li>
+        <li>
+            shortcut to create elements with attributes and children<br>
+            <code><br>
+Dim el As JSElement = document.createElement1("DIV", CreateMap("css":"background-color:green;border:1px solid black;","class":"blue there"), Null)<br>
+body.appendChild(el)<br>
+</code><br>
+        </li>
+    </ul>
+</body>
+
+</html>

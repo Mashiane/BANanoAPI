@@ -17,6 +17,25 @@ Public Sub Initialize(bo As BANanoObject) As JSElement
 	Return Me
 End Sub
 
+
+'convert object to string
+private Sub CStr(o As Object) As String
+	If banano.IsNull(o) Or banano.IsUndefined(o) Then o = ""
+	Return "" & o
+End Sub
+
+private Sub StrParse(delim As String, inputString As String) As List
+	Dim nl As List
+	nl.Initialize
+	inputString = CStr(inputString)
+	If inputString = "null" Then inputString = ""
+	If inputString = "undefined" Then inputString = ""
+	If inputString = "" Then Return nl
+	Dim values() As String = banano.Split(delim,inputString)
+	nl.AddAll(values)
+	Return nl
+End Sub
+
 'clear
 Sub empty As JSElement
 	setinnerHTML("")
@@ -1023,21 +1042,18 @@ End Sub
 
 'shortcut - addClass
 Sub addClass(className As String) As JSElement
-	classList.add(className)
-	Return Me 
-End Sub
-
-'add classes
-Sub addClasses(classNames As List) As JSElement
-	For Each strName As String In classNames
-		addClass(strName)
+	className = className.trim
+	If className = "" Then Return Me
+	Dim cnames As List = StrParse(" ", className)
+	For Each cname As String In cnames
+		classList.add(cname)
 	Next
-	Return Me
+	Return Me 
 End Sub
 
 'shortcut - hasClass
 Sub hasClass(className As String) As Boolean
-	Return classList.containsClass(className)
+	Return classList.contains1(className)
 End Sub
 
 'shortcut - toggleClass

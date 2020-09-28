@@ -25,7 +25,7 @@ Sub Init
 	'create a table
 	Dim tb1 As JSTable
 	tb1.Initialize(document, "tbcanvas")
-	Dim cols As List = canvdays.Columns("fillStyle", 5)
+	Dim cols As List = canvdays.Columns("fillStyle", 6)
 	tb1.SetHeaders(cols)
 	tb1.AddRow(cols)
 	body.appendChild(tb1.Table)
@@ -88,6 +88,16 @@ Sub Init
 	b1.innerText = "Repeat"
 	b1.onClick(Me, "brepeat")
 	tb1.row(1).cell(4).appendChild(b1)
+	
+	'
+	Dim ctx6 As JSCanvas = canvdays.Skeleton(document, tb1, "ctx6", 1, 5)
+	'Create gradient
+	Dim grd As JSCanvas = ctx6.createLinearGradient1(0,0,200,0)
+	grd.addColorStop1(0,"red")
+	grd.addColorStop1(1,"white")
+	'Fill with gradient
+	ctx6.fillStyle = grd.context
+	ctx6.fillRect1(10,10,150,80)
 End Sub
 
 Sub brepeat(e As BANanoEvent)

@@ -64,7 +64,9 @@ Sub SetColumnWidths(widths As List) As JSTable
 	Return Me
 End Sub
 
+'convert object to string
 private Sub CStr(o As Object) As String
+	If banano.IsNull(o) Or banano.IsUndefined(o) Then o = ""
 	Return "" & o
 End Sub
 
@@ -262,7 +264,7 @@ Sub deleteTHead As JSTable
 End Sub
 
 'rc
-Sub RC(rowPos As Int, cellPos As Int) As JSElement
+Sub Cell(rowPos As Int, cellPos As Int) As JSElement
 	Return row(rowPos).cell(cellPos)
 End Sub
 

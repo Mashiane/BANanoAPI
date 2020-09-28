@@ -68,6 +68,27 @@ Sub setPixelColor1(pos As Int, pxl As Pixel) As JSCanvas
 	Return Me
 End Sub
 
+'set globalCompositeOperation
+Sub setglobalCompositeOperation(value As String) As JSCanvas
+	Context.SetField("globalCompositeOperation", value)
+	Return Me
+End Sub
+
+'get globalCompositeOperation
+Sub getglobalCompositeOperation() As String
+	Return Context.GetField("globalCompositeOperation").result
+End Sub
+
+'set globalAlpha
+Sub setglobalAlpha(value As String) As JSCanvas
+	Context.SetField("globalAlpha", value)
+	Return Me
+End Sub
+
+'get globalAlpha
+Sub getglobalAlpha() As String
+	Return Context.GetField("globalAlpha").result
+End Sub
 
 'get width
 Sub getwidth() As Int
@@ -527,8 +548,8 @@ Sub gettoDataURL() As Object
 End Sub
 
 'createLinearGradient
-Sub createLinearGradient1(x0 As Int, y0 As Int, x1 As Int, y1 As Int) As JSCanvas
-	Dim bo As BANanoObject = Context.RunMethod("createLinearGradient", Array(x0, x1, y0, y1))
+Sub createLinearGradient1(x As Int, y As Int, x1 As Int ,y1 As Int) As JSCanvas
+	Dim bo As BANanoObject = Context.RunMethod("createLinearGradient", Array(x, y, x1, y1))
 	Dim jse As JSCanvas
 	jse.Context = bo
 	jse.data = bo.GetField("data").result
@@ -546,8 +567,8 @@ Sub createPattern1(jse As JSElement, direction As String) As JSCanvas
 End Sub
 
 'createRadialGradient
-Sub createRadialGradient1(x0 As Int, y0 As Int, r0 As Int, x1 As Int, y1 As Int, r1 As Int) As JSCanvas
-	Dim bo As BANanoObject = Context.RunMethod("createRadialGradient", Array(x0,y0,r0,x1,y1,r1))
+Sub createRadialGradient1(x As Int, y As Int , r As Int, x1 As Int, y1 As Int , r1 As Int) As JSCanvas
+	Dim bo As BANanoObject = Context.RunMethod("createRadialGradient", Array(x,y,r,x1,y1,r1))
 	Dim el As JSCanvas
 	el.Context = bo
 	el.data = bo.GetField("data").result

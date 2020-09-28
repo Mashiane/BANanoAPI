@@ -23,7 +23,7 @@ Sub Init
 	document.title = "BANanoAPI - Canvas Day 02"
 	'
 	tb1.Initialize(document, "tbcanvas")
-	Dim cols As List = canvdays.Columns("strokeStyle", 3)
+	Dim cols As List = canvdays.Columns("strokeStyle", 4)
 	tb1.SetHeaders(cols)
 	tb1.AddRow(cols)
 	body.appendChild(tb1.Table)
@@ -53,4 +53,13 @@ Sub Init
 	gradient3.addColorStop1("1.0", "red")
 	ctx3.strokeStyle = gradient3.context
 	ctx3.strokeText1("Big smile!", 10, 50)
+	
+	Dim ctx4 As JSCanvas = canvdays.Skeleton(document, tb1, "ctx4", 1, 3)
+	'Create gradient
+	Dim grd As JSCanvas = ctx4.createRadialGradient1(75,50,5,90,60,100)
+	grd.addColorStop1(0,"red")
+	grd.addColorStop1(1,"white")
+	' Fill with gradient
+	ctx4.fillStyle = grd.context
+	ctx4.fillRect1(10,10,150,80)
 End Sub

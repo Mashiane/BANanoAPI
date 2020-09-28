@@ -46,6 +46,8 @@ Sub Init
 	ctx1.lineTo1(20, 100)
 	ctx1.lineTo1(70, 100)
 	ctx1.strokeStyle = "red"
+	ctx1.stroke1
+
 	'
 	Dim ctx2 As JSCanvas = canvdays.Skeleton(document, tb1, "ctx2", 1, 2)
 	ctx2.beginPath1

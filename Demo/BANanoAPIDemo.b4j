@@ -100,43 +100,47 @@ Module24=pgCanvasDay15
 Module25=pgCanvasDay16
 Module26=pgCanvasDay17
 Module27=pgCanvasDay18
-Module28=pgClassList
-Module29=pgComparison
+Module28=pgCanvasDay19
+Module29=pgCanvasDay20
 Module3=pgAMLController
-Module30=pgDates
-Module31=pgDoLoop
-Module32=pgDynamicStyles
-Module33=pgFireClick
-Module34=pgForLoop
-Module35=pgFunctions
-Module36=pgHelloFunction
-Module37=pgHelloWorld
-Module38=pgIfStatement
-Module39=pgIIF
+Module30=pgClassList
+Module31=pgClock
+Module32=pgComparison
+Module33=pgDates
+Module34=pgDoLoop
+Module35=pgDynamicStyles
+Module36=pgFireClick
+Module37=pgForLoop
+Module38=pgFunctions
+Module39=pgHelloFunction
 Module4=pgAMLData
-Module40=pgIndex
-Module41=pgLocalStorage
-Module42=pgLogical
-Module43=pgLoopExiting
-Module44=pgMapObject
-Module45=pgMath
-Module46=pgObjects
-Module47=pgOperators
-Module48=pgSessionStorage
-Module49=pgStyle
+Module40=pgHelloWorld
+Module41=pgIfStatement
+Module42=pgIIF
+Module43=pgIndex
+Module44=pgLocalStorage
+Module45=pgLogical
+Module46=pgLoopExiting
+Module47=pgMapObject
+Module48=pgMath
+Module49=pgObjects
 Module5=pgAMLPHP
-Module50=pgSwitch
-Module51=pgTable
-Module52=pgVariables
-Module53=pgVisibility
-Module54=pgWhileLoop
+Module50=pgOperators
+Module51=pgSessionStorage
+Module52=pgStyle
+Module53=pgSwitch
+Module54=pgTable
+Module55=pgTests
+Module56=pgVariables
+Module57=pgVisibility
+Module58=pgWhileLoop
 Module6=pgappml
 Module7=pgappmlobjects
 Module8=pgArrays
 Module9=pgBulb
 NumberOfFiles=37
 NumberOfLibraries=5
-NumberOfModules=54
+NumberOfModules=58
 Version=8.5
 @EndOfDesignText@
 #IgnoreWarnings: 12, 15
@@ -262,6 +266,7 @@ Sub Application_Error (Error As Exception, StackTrace As String) As Boolean
 End Sub
 
 Sub BANano_Ready
+	pgTests.init
 	'pgHelloWorld.init
 	'pgHelloFunction.Init
 	'pgVariables.Init
@@ -300,7 +305,10 @@ Sub BANano_Ready
 	'pgCanvasDay15.Init
 	'pgCanvasDay16.init
 	'pgCanvasDay17.Init
-	pgCanvasDay18.init
+	'pgCanvasDay18.init
+	'pgCanvasDay19.init
+	'pgCanvasDay20.init
+	'pgClock.Init
 	
 	
 	'**** Application Modelling Langunage (AML)

@@ -23,7 +23,7 @@ Sub Init
 	document.title = "BANanoAPI - Canvas Day 15"
 	'
 	tb1.Initialize(document, "tbcanvas")
-	Dim cols As List = canvdays.Columns("fillText", 3)
+	Dim cols As List = canvdays.Columns("fillText", 4)
 	tb1.SetHeaders(cols)
 	tb1.AddRow(cols)
 	body.appendChild(tb1.Table)
@@ -68,5 +68,12 @@ Sub Init
 	Dim w As Int = ctx2.measureText1(txt)
 	ctx2.fillText1("width:" & w, 10, 50)
 	ctx2.fillText1(txt, 10, 100)
-	
+	'
+	'r1c3
+	tb1.row(0).cell(3).innerHTML = "fillStyle"
+	Dim ctx3 As JSCanvas = canvdays.Skeleton(document, tb1, "ctx2", 1, 3)
+	ctx3.font="30px Comic Sans MS"
+	ctx3.fillStyle = "red"
+	ctx3.textAlign = "center"
+	ctx3.fillText1("Hello World", ctx3.canvas.width/2, ctx3.canvas.height/2)
 End Sub

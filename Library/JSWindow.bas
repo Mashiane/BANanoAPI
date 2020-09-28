@@ -41,7 +41,7 @@ Sub setTimeout(Module As Object, methodName As String, ms As Int) As Object
 	Return rslt
 End Sub
 
-'execute function after waiting & repeat
+'execute function after waiting and repeat
 Sub setInterval(Module As Object, methodName As String, ms As Int) As Object
 	Dim e As BANanoEvent
 	Dim cb As BANanoObject = banano.CallBack(Module, methodName, Array(e))

@@ -74,7 +74,7 @@ Sub toggle(className As String) As JSClassList
 End Sub
 
 'contains
-Sub containsClass(className As String) As Boolean
+Sub contains1(className As String) As Boolean
 	Dim rslt As Boolean = ClassList.RunMethod("contains", Array(className))
 	Return rslt
 End Sub
