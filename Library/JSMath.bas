@@ -233,3 +233,19 @@ End Sub
 Sub LOG10E() As Double
 	Return objMath.GetField("LOG10E").result
 End Sub
+
+'isEven
+'<code>
+'Dim isEven As Boolean = document.isEven(10)
+'</code>
+Sub isEven(n As Int) As Boolean
+	If (n = 0) Then 
+		Return True
+	else if (n = 1) Then 
+		Return False
+	else if (n < 0) Then
+		Return isEven(n * -1)
+	Else 
+		Return isEven(n - 2)
+	End If
+End Sub

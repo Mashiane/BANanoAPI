@@ -13,10 +13,6 @@ Sub Class_Globals
 	
 	Public header As JSElement
 	Public footer As JSElement
-	Private colWidths As List
-	Private colVisibles As List
-	Private colSortables As List
-	Private colDataFields As List
 End Sub
 
 'initialize the table
@@ -25,11 +21,6 @@ Public Sub Initialize(doc As JSDocument, tableID As String) As JSTable
 	Table = doc.createElement("TABLE")
 	Table.id = ID
 	document = doc
-	'
-	colWidths.Initialize 
-	colVisibles.Initialize 
-	colSortables.Initialize
-	colDataFields.Initialize 
 	Return Me 
 End Sub
 
@@ -45,8 +36,8 @@ Sub setAttribute(k As String, v As String) As JSTable
 	Return Me
 End Sub
 
-'clear
-Sub Clear
+'clear rows
+Sub clear
 	Dim trows As Int = rows.Size - 1
 	Dim crow As Int
 	For crow = trows To 1 Step -1
@@ -56,10 +47,12 @@ End Sub
 
 'set column widths
 Sub SetColumnWidths(widths As List) As JSTable
-	colWidths.clear
+	Dim colpos As Int = -1
 	For Each fld As String In widths
-		Dim ifld As Int = banano.parseInt(fld)
-		colWidths.Add(ifld)
+		colpos = colpos + 1
+		'get the heading cell
+		Dim hcell As JSElement = row(0).cell(colpos)
+		hcell.style.width = CStr(fld) & "px"
 	Next
 	Return Me
 End Sub
@@ -157,7 +150,7 @@ Sub SetHeaders(hdrs As List) As JSElement
 End Sub
 
 'add new row
-Sub AddRow(hdrs As List) As JSElement
+Sub addRow(hdrs As List) As JSElement
 	'create the row
 	Dim trow As JSElement = insertRow(-1)
 	Dim rCnt As Int = rows.Size - 1
@@ -168,7 +161,10 @@ Sub AddRow(hdrs As List) As JSElement
 		Dim hcell As JSElement = trow.insertCell(-1)
 		cc = cc + 1
 		hcell.id = $"${trow.id}c${cc}"$
-		hcell.textContent = fld
+		hcell.innerHTML = fld
+		If banano.IsDecimal(fld) Then hcell.style.textAlign = "right"
+		If banano.IsInteger(fld) Then hcell.style.textAlign = "right"
+		If banano.IsNumber(fld) Then hcell.style.textAlign = "right"
 	Next
 	Return trow
 End Sub
@@ -208,7 +204,7 @@ Sub SetFooters(hdrs As List) As JSElement
 		Dim hcell As JSElement = frow.insertCell(-1)
 		cc = cc + 1
 		hcell.id = $"${frow.id}c${cc}"$
-		hcell.textContent = fld
+		hcell.innerHTML = fld
 	Next
 	Return frow
 End Sub
@@ -222,29 +218,27 @@ Public Sub SetFooter(footerText As String, colspan As Int) As JSElement
 	frow.id = $"f${ID}r0"$
 	Dim hcell As JSElement = frow.insertCell(-1)
 	hcell.id = $"${frow.id}c0"$
-	hcell.textContent = footerText
+	hcell.innerHTML = footerText
 	hcell.colSpan = colspan
 	Return frow
 End Sub
 
-'set column data fields
-Sub SetColumnDataFields(data As List) As JSTable
-	colDataFields.clear
-	For Each fld As String In data
-		colWidths.Add(fld)
-	Next
-	Return Me
-End Sub
 
 'set column visible
 Sub SetColumnVisible(visible As List) As JSTable
-	colWidths.clear
+	Dim colpos As Int = -1
 	For Each fld As Object In visible
-		colWidths.Add(fld)
+		colpos = colpos + 1
+		'get the heading cell
+		Dim hcell As JSElement = row(0).cell(colpos)
+		If fld = True Then
+			hcell.style.display = "block"
+		Else	
+			hcell.style.display = "hidden"
+		End If
 	Next
 	Return Me
 End Sub
-
 
 'style
 Sub style As JSStyle
@@ -264,7 +258,7 @@ Sub deleteTHead As JSTable
 End Sub
 
 'rc
-Sub Cell(rowPos As Int, cellPos As Int) As JSElement
+Sub cell(rowPos As Int, cellPos As Int) As JSElement
 	Return row(rowPos).cell(cellPos)
 End Sub
 

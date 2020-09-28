@@ -266,7 +266,7 @@ Sub Application_Error (Error As Exception, StackTrace As String) As Boolean
 End Sub
 
 Sub BANano_Ready
-	pgTests.init
+	'pgTests.init
 	'pgHelloWorld.init
 	'pgHelloFunction.Init
 	'pgVariables.Init
@@ -288,7 +288,7 @@ Sub BANano_Ready
 	'pgMapObject.Init
 	
 	'**** CANVAS
-	'pgCanvasDay01.Init
+	pgCanvasDay01.Init
 	'pgCanvasDay02.Init
 	'pgCanvasDay03.Init
 	'pgCanvasDay04.Init
